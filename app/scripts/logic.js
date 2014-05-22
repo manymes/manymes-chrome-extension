@@ -9,6 +9,7 @@ var manymes = window.manymes || {};
         this.location = null;
         this.active = false;
         this.availableUrls = [];
+        this.currentUrl = null;
 
         this.EVENTS = {
             SET_URL: 'SET_URL',
@@ -25,8 +26,9 @@ var manymes = window.manymes || {};
         if(pack.type === 'active'){
             this.active = !this.active;
             if(this.active){
-                
                 this.loop();
+            }else{
+                this.currentUrl = null;
             }
             $(this).trigger(this.EVENTS.STATE_CHANGED, {
                 type: 'active',
@@ -51,11 +53,11 @@ var manymes = window.manymes || {};
         console.log('onVisitUrlFromAvailableComplete');
     };
     /*surfin bird*/
-    Logic.prototype.setUrl = function(){
+    Logic.prototype.setUrl = function(url){
         $(this).trigger(this.EVENTS.SET_URL, {
             callback: this.onSetUrlComplete,
             data: {
-                url: 'http://www.google.de'
+                url: url
             }
         });
     };
@@ -78,16 +80,30 @@ var manymes = window.manymes || {};
         });
     };
 
+    Logic.prototype.generateBaseUrl = function(){
+        var words = ['salt', 'pepper', 'family guy'];
+        var randomWord = words[Math.floor(Math.random() * words.length)];
+        return 'http://www.google.com/#q=' + randomWord;
+    };
+
     Logic.prototype.loop = function(){
         var that = this;
         setTimeout(function(){
 
             console.log('loop');
 
+            if(that.currentUrl === null){
+                that.setUrl(that.generateBaseUrl());
+            }else{
+                that.setUrl(that.generateBaseUrl());//get avail urls
+            }
+
+
+
             if(that.active){
                 that.loop();
             }
-        }, 1000);
+        }, 3000);
 
     };
 
