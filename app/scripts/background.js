@@ -12,11 +12,11 @@ var logic = new manymes.Logic();
 
 chrome.runtime.onMessage.addListener(function(request){
     if(request.method === 'changeState'){
-        $(logic).trigger(logic.EVENTS.CHANGE_STATE, request.data);
+        $(logic).trigger(logic.EVENTS.CHANGE_STATE, request.pack);
     }
 });
 
-$(logic).on(logic.EVENTS.STATE_CHANGED, function(data){
-    chrome.runtime.sendMessage({method: 'stateChanged', data: data});
+$(logic).on(logic.EVENTS.STATE_CHANGED, function(event, pack){
+    chrome.runtime.sendMessage({method: 'stateChanged', pack: pack});
 });
 
