@@ -26,8 +26,8 @@ var manymes = window.manymes || {};
 
     };
 
-    View.prototype.onStateChanged = function(event, data){
-        this.$container.append('<p>received:' +  data.type + '</p>');
+    View.prototype.onStateChanged = function(event, pack){
+        this.$container.append('<p>' +  pack.type + ':'+ pack.data.state + '</p>');
     };
 
     manymes.View = View;

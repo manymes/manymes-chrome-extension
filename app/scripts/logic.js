@@ -1,3 +1,4 @@
+/*jshint unused:vars */
 'use strict';
 
 var manymes = window.manymes || {};
@@ -6,7 +7,7 @@ var manymes = window.manymes || {};
 
     var Logic = function Logic(){
         this.location = null;
-        this.active = 'hallo ich bin der state';
+        this.active = false;
         this.availableUrls = [];
 
         this.EVENTS = {
@@ -19,13 +20,75 @@ var manymes = window.manymes || {};
 
         $(this).on(this.EVENTS.CHANGE_STATE, this.onChangeState);
     };
-    Logic.prototype.onChangeState = function(){
-        $(this).trigger(this.EVENTS.STATE_CHANGED, {
-            type: 'active',
+
+    Logic.prototype.onChangeState = function(event, pack){
+        if(pack.type === 'active'){
+            this.active = !this.active;
+            if(this.active){
+                
+                this.loop();
+            }
+            $(this).trigger(this.EVENTS.STATE_CHANGED, {
+                type: 'active',
+                data: {
+                    state: this.active
+                }
+            });
+        }
+        
+    };
+    /*Callback functions*/
+    Logic.prototype.onSetUrlComplete = function(event){
+        console.log('onSetUrlComplete');
+
+    };
+
+    Logic.prototype.onGetAvailableUrlsComplete = function(event){
+        console.log('onGetAvailableUrlsComplete');
+    };
+
+    Logic.prototype.onVisitUrlFromAvailableComplete = function(event){
+        console.log('onVisitUrlFromAvailableComplete');
+    };
+    /*surfin bird*/
+    Logic.prototype.setUrl = function(){
+        $(this).trigger(this.EVENTS.SET_URL, {
+            callback: this.onSetUrlComplete,
             data: {
-                state: this.active
+                url: 'http://www.google.de'
             }
         });
+    };
+
+    Logic.prototype.getAvailableUrls = function(){
+        $(this).trigger(this.EVENTS.GET_AVAILABLE_URLS, {
+            callback: this.onGetAvailableUrlsComplete,
+            data: {
+                limit: 5
+            }
+        });
+    };
+
+    Logic.prototype.visitUrlFromAvailable = function(){
+        $(this).trigger(this.EVENTS.VISIT_URL_FROM_AVAILABLE, {
+            callback: this.onVisitUrlFromAvailableComplete,
+            data: {
+                url: 'http://www.google.de'
+            }
+        });
+    };
+
+    Logic.prototype.loop = function(){
+        var that = this;
+        setTimeout(function(){
+
+            console.log('loop');
+
+            if(that.active){
+                that.loop();
+            }
+        }, 1000);
+
     };
 
 //         var that = this;
