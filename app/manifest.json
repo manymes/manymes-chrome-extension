@@ -11,7 +11,7 @@
     "background": {
         "scripts": [
             "scripts/chromereload.js",
-            "bower_components/jquery/dist/jquery.min.js",
+            "bower_components/jquery/dist/jquery.js",
             "scripts/logic.js",
             "scripts/background.js"
         ]
@@ -24,7 +24,7 @@
     "default_title": "manymes",
     "default_popup": "popup.html"
   },
-  "web_accessible_resources": ["bower_components/jquery/dist/jquery.min.js"],
+  "web_accessible_resources": ["bower_components/jquery/dist/jquery.js"],
   "content_scripts": [
     {
       "matches": [
@@ -35,7 +35,7 @@
         "styles/main.css"
       ],
       "js": [
-        "bower_components/jquery/dist/jquery.min.js",
+        "bower_components/jquery/dist/jquery.js",
         "scripts/contentscript.js"
       ],
       "run_at": "document_end",
