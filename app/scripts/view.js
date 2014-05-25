@@ -6,7 +6,7 @@ var manymes = window.manymes || {};
 
     var View = function View($container){
         this.$container = $container;
-        this.$button = $('#toggleOnOff');
+        this.$button = $('#myonoffswitch');
         this.EVENTS = {
             CHANGE_STATE: 'CHANGE_STATE',
             STATE_CHANGED: 'STATE_CHANGED'
@@ -15,7 +15,6 @@ var manymes = window.manymes || {};
         $(this).on(this.EVENTS.STATE_CHANGED, this.onStateChanged);
         var that = this;
         this.$button.on('click', function(){
-            console.log('click');
             $(that).trigger(that.EVENTS.CHANGE_STATE, {
                 type: 'active',
                 data: {

@@ -27,8 +27,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if(request.method === 'getPluginTabId'){
         if(sender.tab.id === tabId){
             sendResponse(tabId);
-        }
-        
+        }    
     }
 });
 

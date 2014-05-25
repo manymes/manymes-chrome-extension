@@ -22,6 +22,7 @@ function getLinks(){
     // document.getElementsByTagName('img').removeAttribute('src');
     var links = document.getElementsByTagName('a'); // returns an HTML Collection
     links = Array.prototype.slice.call(links);
+    console.log(links);
     return links;
 }
 
