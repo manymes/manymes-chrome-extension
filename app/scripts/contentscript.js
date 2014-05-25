@@ -15,7 +15,10 @@ $(document).ready(function(){
     
 });
 
-
+/**
+ * fetches links from DOM
+ * @return {array} urls
+ */
 function getLinks(){
     var links = document.getElementsByTagName('a'); // returns an HTML Collection
     links = Array.prototype.slice.call(links);

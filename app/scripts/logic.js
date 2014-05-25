@@ -4,7 +4,9 @@
 var manymes = window.manymes || {};
 
 (function (){
-
+    /**
+     * Logic
+     */
     var Logic = function Logic(){
         this.location = null;
         this.active = false;
@@ -22,30 +24,32 @@ var manymes = window.manymes || {};
         };
 
         var that = this;
-
+        /**
+         * filters the urls fetched from the tab 
+         * @param  {string} urls urls from tab
+         * @return {}
+         */
         this.onGetAvailableUrlsComplete = function(urls){
             urls = JSON.parse(urls);
             var length = urls.length;
-            console.log(length);
-            // if(urls.length >= this.urlLimit){
-            //     length = this.urlLimit;
-            // }
             //google regex
-            var regex = '^(http|https)://(?!(www|maps|plus|mail|translate|accounts|play|webcache|support|news|drive|books)\\.google).+?\\.(?!(jpg|png|gif|jpeg))';
+            var regex = '^(http|https)://(?!(www|maps|plus|mail|translate|accounts|play|webcache|support|news|drive|books)\\.google).+?\\.(?!(jpg|png|gif|jpeg|pdf|zip))';
             for(var i = 0; i < length; i++){
                 if(urls[i].match(regex)){
                     that.availableUrls.push(urls[i]);
-                    console.log(urls[i]);
                 }
-                
             }
             
-            console.log(that);
         };
 
         $(this).on(this.EVENTS.CHANGE_STATE, this.onChangeState);
     };
-
+    /**
+     * handles messages from view
+     * @param  {object} event event object
+     * @param  {pack} pack  contains data and callback function
+     * @return {}
+     */
     Logic.prototype.onChangeState = function(event, pack){
         if(pack.type === 'active'){
             this.active = !this.active;
@@ -71,15 +75,27 @@ var manymes = window.manymes || {};
         
     };
     /*Callback functions*/
+
+
+    /**
+     * [onSetUrlComplete description]
+     * @param  {[type]} event [description]
+     * @return {[type]}       [description]
+     */
     Logic.prototype.onSetUrlComplete = function(event){
-        console.log('onSetUrlComplete');
 
     };
-
+    /**
+     * [onVisitUrlFromAvailableComplete description]
+     * @param  {[type]} event [description]
+     * @return {[type]}       [description]
+     */
     Logic.prototype.onVisitUrlFromAvailableComplete = function(event){
-        console.log('onVisitUrlFromAvailableComplete');
+
     };
-    /*surfin bird*/
+    /**
+     * sends url to be set to tab
+     */
     Logic.prototype.setUrl = function(){
         this.baseUrl = this.generateBaseUrl();
         $(this).trigger(this.EVENTS.SET_URL, {
@@ -89,7 +105,10 @@ var manymes = window.manymes || {};
             }
         });
     };
-
+    /**
+     * triggers GET_AVAILABLE_URLS
+     * @return {}
+     */
     Logic.prototype.getAvailableUrls = function(){
         $(this).trigger(this.EVENTS.GET_AVAILABLE_URLS, {
             callback: this.onGetAvailableUrlsComplete,
@@ -98,7 +117,10 @@ var manymes = window.manymes || {};
             }
         });
     };
-
+    /**
+     * visit url from available
+     * @return {}
+     */
     Logic.prototype.visitUrlFromAvailable = function(){
         var randomUrl = this.getRandomAvailableUrl();
         $(this).trigger(this.EVENTS.VISIT_URL_FROM_AVAILABLE, {
@@ -108,13 +130,19 @@ var manymes = window.manymes || {};
             }
         });
     };
-
+    /**
+     * generates Base Url (Google at the moment)
+     * @return {string} random url
+     */
     Logic.prototype.generateBaseUrl = function(){
         var words = ['salt', 'pepper', 'family guy'];
         var randomWord = words[Math.floor(Math.random() * words.length)];
         return 'http://www.google.com/#q=' + randomWord;
     };
-
+    /**
+     * returns random url from available urls
+     * @return {string} random url
+     */
     Logic.prototype.getRandomAvailableUrl = function(){
 
         var rand = Math.floor(Math.random() * this.availableUrls.length);
@@ -122,29 +150,28 @@ var manymes = window.manymes || {};
         return result[0];
             
     };
-
+    /**
+     * checks if urls are available
+     * @return {boolean}
+     */
     Logic.prototype.areUrlsAvailable = function(){
         return this.availableUrls.length;
     };
-
+    /**
+     * visits urls
+     * @return {}
+     */
     Logic.prototype.loop = function(){
         var that = this;
         setTimeout(function(){
 
-            console.log('loop');
-            console.log(that.availableUrls);
             if(!that.areUrlsAvailable() && that.baseUrl !== null){
-                console.log('get urls');
                 that.getAvailableUrls();
             }else if(that.areUrlsAvailable()){
-                console.log('visit urls');
                 that.visitUrlFromAvailable();
             }else{
-                console.log('set url2');
                 that.setUrl();
             }
-
-
 
             if(that.active){
                 that.loop();
