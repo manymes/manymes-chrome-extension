@@ -1,8 +1,5 @@
 'use strict';
-// document.addEventListener('DOMContentLoaded', function() {
-//     document.getElementsByTagName('img').removeAttribute('src');
 
-// }, false);
 
 function appendManyMesOverlay(){
     $('body').append('<div class="manymes-container">manymes is watching this tab</div>');
@@ -15,6 +12,7 @@ $(document).ready(function(){
     
 });
 
+
 /**
  * fetches links from DOM
  * @return {array} urls
@@ -24,6 +22,7 @@ function getLinks(){
     links = Array.prototype.slice.call(links);
     return links;
 }
+
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {

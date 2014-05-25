@@ -1,18 +1,12 @@
 /*jshint unused:vars */
 'use strict';
 
-// chrome.runtime.onInstalled.addListener(function (details) {
-//     console.log('previousVersion', details.previousVersion);
-// });
-
-// chrome.browserAction.setBadgeText({text: '\'Allo'});
-// 
-// 
-
 var tabId = null;
 var manymes = window.manymes || {};
 
 var logic = new manymes.Logic();
+
+
 /**
  * listens to messages from other plugin components
  * @param  {json} request      contains method and data
@@ -30,6 +24,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         }
     }
 });
+
+
 /**
  * handles changed state of logic
  * @param  {object} event event object
@@ -49,6 +45,8 @@ $(logic).on(logic.EVENTS.STATE_CHANGED, function(event, pack){
         }
     }
 });
+
+
 /**
  * sets URL in Tab given by the logic
  * @param  {object} event event object
@@ -70,6 +68,8 @@ $(logic).on(logic.EVENTS.SET_URL, function(event, pack){
             chrome.tabs.onUpdated.addListener(listener);
         });
 });
+
+
 /**
  * gets urls from website browsed on
  * @param  {object} event event object
@@ -82,6 +82,8 @@ $(logic).on(logic.EVENTS.GET_AVAILABLE_URLS, function(event, pack){
         });
 
 });
+
+
 /**
  * visits given url
  * @param  {object} event event object

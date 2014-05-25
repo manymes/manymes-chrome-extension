@@ -4,6 +4,8 @@
 var manymes = window.manymes || {};
 
 (function (){
+
+
     /**
      * Logic
      */
@@ -24,6 +26,8 @@ var manymes = window.manymes || {};
         };
 
         var that = this;
+
+
         /**
          * filters the urls fetched from the tab 
          * @param  {string} urls urls from tab
@@ -44,6 +48,8 @@ var manymes = window.manymes || {};
 
         $(this).on(this.EVENTS.CHANGE_STATE, this.onChangeState);
     };
+
+
     /**
      * handles messages from view
      * @param  {object} event event object
@@ -74,6 +80,8 @@ var manymes = window.manymes || {};
         }
         
     };
+
+
     /*Callback functions*/
 
 
@@ -85,6 +93,8 @@ var manymes = window.manymes || {};
     Logic.prototype.onSetUrlComplete = function(event){
 
     };
+
+
     /**
      * [onVisitUrlFromAvailableComplete description]
      * @param  {[type]} event [description]
@@ -93,6 +103,8 @@ var manymes = window.manymes || {};
     Logic.prototype.onVisitUrlFromAvailableComplete = function(event){
 
     };
+
+
     /**
      * sends url to be set to tab
      */
@@ -105,6 +117,8 @@ var manymes = window.manymes || {};
             }
         });
     };
+
+
     /**
      * triggers GET_AVAILABLE_URLS
      * @return {}
@@ -117,6 +131,8 @@ var manymes = window.manymes || {};
             }
         });
     };
+
+
     /**
      * visit url from available
      * @return {}
@@ -130,6 +146,8 @@ var manymes = window.manymes || {};
             }
         });
     };
+
+
     /**
      * generates Base Url (Google at the moment)
      * @return {string} random url
@@ -139,6 +157,8 @@ var manymes = window.manymes || {};
         var randomWord = words[Math.floor(Math.random() * words.length)];
         return 'http://www.google.com/#q=' + randomWord;
     };
+
+
     /**
      * returns random url from available urls
      * @return {string} random url
@@ -150,6 +170,8 @@ var manymes = window.manymes || {};
         return result[0];
             
     };
+
+
     /**
      * checks if urls are available
      * @return {boolean}
@@ -157,6 +179,8 @@ var manymes = window.manymes || {};
     Logic.prototype.areUrlsAvailable = function(){
         return this.availableUrls.length;
     };
+
+    
     /**
      * visits urls
      * @return {}

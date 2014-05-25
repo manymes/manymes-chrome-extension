@@ -3,6 +3,8 @@
 var manymes = window.manymes || {};
 
 (function (){
+
+
     /**
      * View
      * @param {$} $container jQuery Object
@@ -16,6 +18,8 @@ var manymes = window.manymes || {};
             STATE_CHANGED: 'STATE_CHANGED'
         };
     };
+
+
     /**
      * initializes View
      * @return {}
@@ -39,6 +43,8 @@ var manymes = window.manymes || {};
                 data: { }
             });
     };
+
+    
     /**
      * handles messages from logic
      * @param  {object} event event object
