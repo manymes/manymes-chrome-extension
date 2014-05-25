@@ -6,7 +6,7 @@ var manymes = window.manymes || {};
 
     var View = function View($container){
         this.$container = $container;
-        this.$button = $('<button>LOs</button>').appendTo(this.$container);
+        this.$button = $('#toggleOnOff');
         this.EVENTS = {
             CHANGE_STATE: 'CHANGE_STATE',
             STATE_CHANGED: 'STATE_CHANGED'
@@ -27,7 +27,7 @@ var manymes = window.manymes || {};
     };
 
     View.prototype.onStateChanged = function(event, pack){
-        this.$container.append('<p>' +  pack.type + ':'+ pack.data.state + '</p>');
+        // this.$container.append('<p>' +  pack.type + ':'+ pack.data.state + '</p>');
     };
 
     manymes.View = View;
