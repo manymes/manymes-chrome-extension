@@ -21,7 +21,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     else if(request.method === 'getPluginTabId'){
         if(sender.tab.id === tabId){
             sendResponse(tabId);
-        }    
+        }
     }
 });
 
@@ -55,7 +55,7 @@ $(logic).on(logic.EVENTS.SET_URL, function(event, pack){
 });
 
 $(logic).on(logic.EVENTS.GET_AVAILABLE_URLS, function(event, pack){
-    chrome.tabs.sendMessage(tabId, {method: 'getAvailableUrlsFromTab', limit: pack.data.limit}, function(urls){
+    chrome.tabs.sendMessage(tabId, {method: 'getAvailableUrlsFromTab'}, function(urls){
             pack.callback(urls);
         });
 

@@ -11,6 +11,7 @@ var manymes = window.manymes || {};
         this.availableUrls = [];
         this.currentUrl = null;
         this.baseUrl = null;
+        this.urlLimit = 1000;
 
         this.EVENTS = {
             SET_URL: 'SET_URL',
@@ -24,8 +25,19 @@ var manymes = window.manymes || {};
 
         this.onGetAvailableUrlsComplete = function(urls){
             urls = JSON.parse(urls);
-            for(var i = 0; i < urls.length; i++){
-                that.availableUrls.push(urls[i]);
+            var length = urls.length;
+            console.log(length);
+            // if(urls.length >= this.urlLimit){
+            //     length = this.urlLimit;
+            // }
+            //google regex
+            var regex = '^(http|https)://(?!(www|maps|plus|mail|translate|accounts|play|webcache|support|news|drive|books)\\.google).+?\\.(?!(jpg|png|gif|jpeg))';
+            for(var i = 0; i < length; i++){
+                if(urls[i].match(regex)){
+                    that.availableUrls.push(urls[i]);
+                    console.log(urls[i]);
+                }
+                
             }
             
             console.log(that);
@@ -82,7 +94,7 @@ var manymes = window.manymes || {};
         $(this).trigger(this.EVENTS.GET_AVAILABLE_URLS, {
             callback: this.onGetAvailableUrlsComplete,
             data: {
-                limit: 3
+                
             }
         });
     };
@@ -121,10 +133,7 @@ var manymes = window.manymes || {};
 
             console.log('loop');
             console.log(that.availableUrls);
-            if(that.baseUrl === null){
-                console.log('set url');
-                that.setUrl();
-            }else if(!that.areUrlsAvailable()){
+            if(!that.areUrlsAvailable() && that.baseUrl !== null){
                 console.log('get urls');
                 that.getAvailableUrls();
             }else if(that.areUrlsAvailable()){
