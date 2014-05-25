@@ -15,7 +15,7 @@ var manymes = window.manymes || {};
         $(this).on(this.EVENTS.STATE_CHANGED, this.onStateChanged);
         var that = this;
         this.$button.on('click', function(){
-            console.log(that.EVENTS.CHANGE_STATE);
+            console.log('click');
             $(that).trigger(that.EVENTS.CHANGE_STATE, {
                 type: 'active',
                 data: {
