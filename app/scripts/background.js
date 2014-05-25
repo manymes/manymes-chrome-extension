@@ -51,6 +51,7 @@ $(logic).on(logic.EVENTS.SET_URL, function(event, pack){
 });
 
 $(logic).on(logic.EVENTS.GET_AVAILABLE_URLS, function(event, pack){
+    console.log('getAvailableUrls, background.js');
     chrome.tabs.sendMessage(tabId, {method: 'getAvailableUrlsFromTab', limit: pack.data.limit}, function(urls){
             pack.callback(urls);
         });

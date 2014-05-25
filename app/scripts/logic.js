@@ -133,7 +133,7 @@ var manymes = window.manymes || {};
             if(that.active){
                 that.loop();
             }
-        }, 5000);
+        }, 3000);
 
     };
 
