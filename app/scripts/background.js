@@ -30,7 +30,7 @@ $(logic).on(logic.EVENTS.STATE_CHANGED, function(event, pack){
 
     if(pack.type === 'active'){
         if(pack.data.state){ //open tab
-            chrome.tabs.create({active: false}, function(tab){
+            chrome.tabs.create({active: false, pinned: true}, function(tab){
                 tabId = tab.id;
             });
         } else { // close tab
