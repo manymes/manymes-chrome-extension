@@ -10,6 +10,7 @@ var manymes = window.manymes || {};
         this.active = false;
         this.availableUrls = [];
         this.currentUrl = null;
+        this.baseUrl = null;
 
         this.EVENTS = {
             SET_URL: 'SET_URL',
@@ -18,6 +19,17 @@ var manymes = window.manymes || {};
             CHANGE_STATE: 'CHANGE_STATE',
             STATE_CHANGED: 'STATE_CHANGED'
         };
+
+        var that = this;
+
+        this.onGetAvailableUrlsComplete = function(urls){
+            urls = JSON.parse(urls);
+            for(var i = 0; i < urls.length; i++){
+                that.availableUrls.push(urls[i]);
+            }
+            
+            console.log(that);
+        };
 
         $(this).on(this.EVENTS.CHANGE_STATE, this.onChangeState);
     };
@@ -45,19 +57,16 @@ var manymes = window.manymes || {};
 
     };
 
-    Logic.prototype.onGetAvailableUrlsComplete = function(event){
-        console.log('onGetAvailableUrlsComplete');
-    };
-
     Logic.prototype.onVisitUrlFromAvailableComplete = function(event){
         console.log('onVisitUrlFromAvailableComplete');
     };
     /*surfin bird*/
-    Logic.prototype.setUrl = function(url){
+    Logic.prototype.setUrl = function(){
+        this.baseUrl = this.generateBaseUrl();
         $(this).trigger(this.EVENTS.SET_URL, {
             callback: this.onSetUrlComplete,
             data: {
-                url: url
+                url: this.baseUrl
             }
         });
     };
@@ -66,16 +75,17 @@ var manymes = window.manymes || {};
         $(this).trigger(this.EVENTS.GET_AVAILABLE_URLS, {
             callback: this.onGetAvailableUrlsComplete,
             data: {
-                limit: 5
+                limit: 3
             }
         });
     };
 
     Logic.prototype.visitUrlFromAvailable = function(){
+        var randomUrl = this.getRandomAvailableUrl();
         $(this).trigger(this.EVENTS.VISIT_URL_FROM_AVAILABLE, {
             callback: this.onVisitUrlFromAvailableComplete,
             data: {
-                url: 'http://www.google.de'
+                url: randomUrl
             }
         });
     };
@@ -86,16 +96,36 @@ var manymes = window.manymes || {};
         return 'http://www.google.com/#q=' + randomWord;
     };
 
+    Logic.prototype.getRandomAvailableUrl = function(){
+
+        var rand = Math.floor(Math.random() * this.availableUrls.length);
+        var result = this.availableUrls.splice( rand, 1);
+        return result[0];
+            
+    };
+
+    Logic.prototype.areUrlsAvailable = function(){
+        return this.availableUrls.length;
+    };
+
     Logic.prototype.loop = function(){
         var that = this;
         setTimeout(function(){
 
             console.log('loop');
-
-            if(that.currentUrl === null){
-                that.setUrl(that.generateBaseUrl());
+            console.log(that.availableUrls);
+            if(that.baseUrl === null){
+                console.log('set url');
+                that.setUrl();
+            }else if(!that.areUrlsAvailable()){
+                console.log('get urls');
+                that.getAvailableUrls();
+            }else if(that.areUrlsAvailable()){
+                console.log('visit urls');
+                that.visitUrlFromAvailable();
             }else{
-                that.setUrl(that.generateBaseUrl());//get avail urls
+                console.log('set url2');
+                that.setUrl();
             }
 
 
@@ -103,57 +133,9 @@ var manymes = window.manymes || {};
             if(that.active){
                 that.loop();
             }
-        }, 3000);
+        }, 5000);
 
     };
-
-//         var that = this;
-
-
-        
-//             onUrlVisited: function(data){
-//                 if(data){
-//                     console.log('gotcha', data);
-//                     that.prototype.getAvailableUrls();
-//                 } else {
-//                     console.error('ERROR: onUrlVisited');
-//                 }
-//             },
-//             onAvailableUrlsReceived: function(data){
-//                 console.log('received urls');
-//                 console.log(JSON.parse(data));
-//                 that.availableUrls = JSON.parse(data);
-//                 that.prototype.setUrlFromAvailable();
-//             },
-//             onUrlFromAvailableVisited: function(data){
-//                 if(data){
-//                     console.log('gotcha childiee');
-//                     setTimeout(function() {
-//                         that.prototype.setUrlFromAvailable();
-//                     }, 3000);
-//                 } else {
-//                     console.error('ERROR: onUrlFromAvailableVisited');
-//                 }
-//             },
-//             getAvailableUrls: function(){
-//                 $(that).trigger(that.EVENTS.GET_AVAILABLE_URLS, {
-//                     limit: 5,
-//                     response: that.prototype.onAvailableUrlsReceived
-//                 });
-//             },
-//             setUrlFromAvailable: function(){
-//                 var rand = Math.floor(Math.random()*that.availableUrls.length);
-//                 var url = that.availableUrls[rand];
-//                 $(that).trigger(that.EVENTS.VISIT_URL_FROM_AVAILABLE, {
-//                     url: url,
-//                     response: that.prototype.onUrlFromAvailableVisited
-//                 });
-//             },
-           
-
-
-
-//     Logic.prototype.constructor = Logic;
 
 
     manymes.Logic = Logic;

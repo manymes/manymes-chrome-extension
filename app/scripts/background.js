@@ -19,9 +19,16 @@ var manymes = window.manymes || {};
 
 var logic = new manymes.Logic();
 
-chrome.runtime.onMessage.addListener(function(request){
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if(request.method === 'changeState'){
         $(logic).trigger(logic.EVENTS.CHANGE_STATE, request.pack);
+    }
+
+    if(request.method === 'getPluginTabId'){
+        if(sender.tab.id === tabId){
+            sendResponse(tabId);
+        }
+        
     }
 });
 
