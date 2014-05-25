@@ -10,11 +10,6 @@
 // 
 
 var tabId = null;
-chrome.tabs.create({}, function(tab){
-    tabId = tab.id;
-});
-
-
 var manymes = window.manymes || {};
 
 var logic = new manymes.Logic();
@@ -23,8 +18,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     if(request.method === 'changeState'){
         $(logic).trigger(logic.EVENTS.CHANGE_STATE, request.pack);
     }
-
-    if(request.method === 'getPluginTabId'){
+    else if(request.method === 'getPluginTabId'){
         if(sender.tab.id === tabId){
             sendResponse(tabId);
         }
@@ -33,6 +27,16 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
 
 $(logic).on(logic.EVENTS.STATE_CHANGED, function(event, pack){
     chrome.runtime.sendMessage({method: 'stateChanged', pack: pack});
+
+    if(pack.type === 'active'){
+        if(pack.data.state){ //open tab
+            chrome.tabs.create({active: false}, function(tab){
+                tabId = tab.id;
+            });
+        } else { // close tab
+            chrome.tabs.remove(tabId);
+        }
+    }
 });
 
 $(logic).on(logic.EVENTS.SET_URL, function(event, pack){
@@ -51,7 +55,6 @@ $(logic).on(logic.EVENTS.SET_URL, function(event, pack){
 });
 
 $(logic).on(logic.EVENTS.GET_AVAILABLE_URLS, function(event, pack){
-    console.log('getAvailableUrls, background.js');
     chrome.tabs.sendMessage(tabId, {method: 'getAvailableUrlsFromTab'}, function(urls){
             pack.callback(urls);
         });

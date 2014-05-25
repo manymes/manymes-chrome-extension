@@ -60,6 +60,13 @@ var manymes = window.manymes || {};
                     state: this.active
                 }
             });
+        } else if (pack.type === 'viewInit'){
+            $(this).trigger(this.EVENTS.STATE_CHANGED, {
+                type: 'viewInit',
+                data: {
+                    state: this.active
+                }
+            });
         }
         
     };
