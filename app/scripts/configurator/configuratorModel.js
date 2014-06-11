@@ -31,7 +31,7 @@ var manymes = window.manymes || {};
         for(var i = 0; i < manymes.avatars.length; i++){
             this.allAvatars.push(new manymes.Avatar(manymes.avatars[i]));
         }
-        this.initActiveAvatars();
+        this.initActiveAvatarIndices();
     };
 
     ConfiguratorModel.prototype.initActiveAvatarIndices = function(){

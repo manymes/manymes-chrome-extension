@@ -18,11 +18,24 @@ var manymes = window.manymes || {};
         this.configuratorView = new manymes.ConfiguratorView(this.$configuratorContainer);
         this.configuratorModel = new manymes.ConfiguratorModel(this.configuratorView);
 
+        var that = this;
+
+        $(this.configuratorModel).on(that.configuratorModel.EVENTS.AVATAR_CHANGED, function (event, data){
+            that.onAvatarChanged(event, data, that);
+        });
+
 
         this.EVENTS = {
             CHANGE_STATE: 'CHANGE_STATE',
             STATE_CHANGED: 'STATE_CHANGED'
         };
+    };
+
+    View.prototype.onAvatarChanged = function(event, data, that){
+        $(that).trigger(that.EVENTS.CHANGE_STATE, {
+                type: 'avatar',
+                data: data
+            });
     };
 
 

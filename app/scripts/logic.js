@@ -77,6 +77,8 @@ var manymes = window.manymes || {};
                     state: this.active
                 }
             });
+        } else if (pack.type === 'avatar'){
+            console.log('avatar changed', pack.data);
         }
         
     };
