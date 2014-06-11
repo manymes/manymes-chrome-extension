@@ -17,10 +17,10 @@ var manymes = window.manymes || {};
         this.createDOMElements();
         var that = this;
         this.$container.find('.prev-btn').on('click', function(){
-            $(that).trigger(that.EVENTS.PREV_AVATAR, $(this).attr('slot'));
+            $(that).trigger(that.EVENTS.PREV_AVATAR, $(this).data('slot'));
         });
         this.$container.find('.next-btn').on('click', function(){
-            $(that).trigger(that.EVENTS.NEXT_AVATAR, $(this).attr('slot'));
+            $(that).trigger(that.EVENTS.NEXT_AVATAR, $(this).data('slot'));
         });
     };
 

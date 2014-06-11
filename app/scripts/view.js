@@ -15,8 +15,8 @@ var manymes = window.manymes || {};
 
         this.$configuratorContainer = this.$container.append('<div></div>');
 
-        this.ConfiguratorView = new manymes.ConfiguratorView(this.$configuratorContainer);
-        this.ConfiguratorModel = new manymes.ConfiguratorModel();
+        this.configuratorView = new manymes.ConfiguratorView(this.$configuratorContainer);
+        this.configuratorModel = new manymes.ConfiguratorModel(this.configuratorView);
 
 
         this.EVENTS = {
