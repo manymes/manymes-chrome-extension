@@ -14,6 +14,11 @@ var manymes = window.manymes || {};
         this.EVENTS = {
             CATEGORY_CHANGED: 'CATEGORY_CHANGED'
         };
+
+        for(var i = 0; i < manymes.avatars.length; i++){
+            this.allAvatars.push(new manymes.Avatar(manymes.avatars[i]));
+        }
+        
     };
 
 
