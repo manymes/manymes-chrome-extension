@@ -13,6 +13,10 @@ var manymes = window.manymes || {};
         this.$container = $container;
         this.$button = $('#myonoffswitch');
 
+        this.ConfiguratorView = new manymes.ConfiguratorView();
+        this.ConfiguratorModel = new manymes.ConfiguratorModel();
+
+
         this.EVENTS = {
             CHANGE_STATE: 'CHANGE_STATE',
             STATE_CHANGED: 'STATE_CHANGED'
