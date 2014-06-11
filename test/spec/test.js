@@ -6,15 +6,17 @@ var manymes = window.manymes || {};
 (function () {
     'use strict';
 
-    describe('logic', function () {
-        var logic = null;
+    describe('configurator', function () {
+        var model = null;
+        var view = null;
         beforeEach(function(){
-            logic = new manymes.Logic();
+            view = new manymes.ConfiguratorView($());
+            model = new manymes.ConfiguratorModel(view);
         });
 
-        describe('stateChange', function () {
-            it('should return the right state', function () {
-                assert.equal(logic.testFunc(), 123);
+        describe('getPermalink', function () {
+            it('should return permalink', function () {
+                assert.equal(typeof model.getPermalink(), 'string');
             });
         });
     });
