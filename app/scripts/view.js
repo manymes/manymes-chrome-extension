@@ -13,7 +13,9 @@ var manymes = window.manymes || {};
         this.$container = $container;
         this.$button = $('#myonoffswitch');
 
-        this.ConfiguratorView = new manymes.ConfiguratorView();
+        this.$configuratorContainer = this.$container.append('<div></div>');
+
+        this.ConfiguratorView = new manymes.ConfiguratorView(this.$configuratorContainer);
         this.ConfiguratorModel = new manymes.ConfiguratorModel();
 
 

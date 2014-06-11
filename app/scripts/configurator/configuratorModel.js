@@ -5,20 +5,23 @@ var manymes = window.manymes || {};
 
 (function (){
 
-    var ConfiguratorModel = function ConfiguratorModel(){
+    var ConfiguratorModel = function ConfiguratorModel(){
 
         this.allAvatars = [];
         this.activeAvatarIndices = [];
 
 
-        this.EVENTS = {
+        this.EVENTS = {
             CATEGORY_CHANGED: 'CATEGORY_CHANGED'
-        };
+        };
 
+        this.init();
+    };
+
+    ConfiguratorModel.prototype.init = function(){
         for(var i = 0; i < manymes.avatars.length; i++){
             this.allAvatars.push(new manymes.Avatar(manymes.avatars[i]));
         }
-        
     };
 
 
@@ -28,6 +31,6 @@ var manymes = window.manymes || {};
 
 
 
-    manymes.ConfiguratorModel = ConfiguratorModel;
+    manymes.ConfiguratorModel = ConfiguratorModel;
 
 })();

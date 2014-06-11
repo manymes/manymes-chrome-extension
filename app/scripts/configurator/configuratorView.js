@@ -5,14 +5,14 @@ var manymes = window.manymes || {};
 
 (function (){
 
-    var ConfiguratorView = function ConfiguratorView($container){
+    var ConfiguratorView = function ConfiguratorView($container){
 
         this.$container = $container;
 
-        this.EVENTS = {
-            NEXT_AVATAR: 'NEXT_AVATAR',
+        this.EVENTS = {
+            NEXT_AVATAR: 'NEXT_AVATAR',
             PREV_AVATAR: 'PREV_AVATAR'
-        };
+        };
 
         this.createDOMElements();
         var that = this;
@@ -26,11 +26,11 @@ var manymes = window.manymes || {};
 
 
     ConfiguratorView.prototype.createDOMElements = function(){
-        var str = '';
+        var str = '<div class="social"></div>';
         for(var i = 0; i < 3; i++){
             str += '<div id="avatar-'+ i +'" class="avatar">' +
-                        '<button class="btn prev-btn" data-slot="'+ i +'"></button>' +
-                        '<button class="btn next-btn" data-slot="'+ i +'"></button>' +
+                        '<button class="btn prev-btn" data-slot="'+ i +'"> prev </button>' +
+                        '<button class="btn next-btn" data-slot="'+ i +'"> next </button>' +
                     '</div>';
         }
         this.$container.append(str);
@@ -38,6 +38,6 @@ var manymes = window.manymes || {};
 
     };
 
-    manymes.ConfiguratorView = ConfiguratorView;
+    manymes.ConfiguratorView = ConfiguratorView;
 
 })();

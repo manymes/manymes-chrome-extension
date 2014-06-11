@@ -5,14 +5,14 @@ var manymes = window.manymes || {};
 
 (function (){
 
-    var Animation = function Animation(){
+    var Animation = function Animation(){
 
 
-        this.EVENTS = {
-            SET_URL: 'SET_URL'
-        };
+        this.EVENTS = {
+            SET_URL: 'SET_URL'
+        };
     };
 
-    manymes.Animation = Animation;
+    manymes.Animation = Animation;
 
 })();
