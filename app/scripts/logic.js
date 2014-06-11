@@ -16,6 +16,7 @@ var manymes = window.manymes || {};
         this.currentUrl = null;
         this.baseUrl = null;
         this.urlLimit = 1000;
+        this.avatars = [];
 
         this.EVENTS = {
             SET_URL: 'SET_URL',
@@ -78,7 +79,7 @@ var manymes = window.manymes || {};
                 }
             });
         } else if (pack.type === 'avatar'){
-            console.log('avatar changed', pack.data);
+            this.onAvatarChanged(pack, this);
         }
         
     };
@@ -94,6 +95,16 @@ var manymes = window.manymes || {};
      */
     Logic.prototype.onSetUrlComplete = function(event){
 
+    };
+
+    /**
+     * [onAvatarChanged description]
+     * @param  {[type]} event [description]
+     * @return {[type]}       [description]
+     */
+    Logic.prototype.onAvatarChanged = function(pack, that){
+        that.avatars = pack.data.split('-');
+        this.setUrl();
     };
 
 
@@ -155,7 +166,11 @@ var manymes = window.manymes || {};
      * @return {string} random url
      */
     Logic.prototype.generateBaseUrl = function(){
-        var words = ['salt', 'pepper', 'family guy'];
+        var words = [];
+        this.avatars.forEach(function(avatar) {
+            words = words.concat(manymes.keywords[avatar] || []);
+        });
+        console.log(words);
         var randomWord = words[Math.floor(Math.random() * words.length)];
         return 'http://www.google.com/#q=' + randomWord;
     };
