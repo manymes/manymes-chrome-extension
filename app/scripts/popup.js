@@ -3,19 +3,19 @@
 $(document).ready(function(){
     var manymes = window.manymes || {};
 
-    var view = new manymes.View($('body'));
+    manymes.view = new manymes.View($('body'));
 
     chrome.runtime.onMessage.addListener(function(request){
         if(request.method === 'stateChanged'){
-            $(view).trigger(view.EVENTS.STATE_CHANGED, request.pack);
+            $(manymes.view).trigger(manymes.view.EVENTS.STATE_CHANGED, request.pack);
         }
     });
 
-    $(view).on(view.EVENTS.CHANGE_STATE, function(event, pack){
+    $(manymes.view).on(manymes.view.EVENTS.CHANGE_STATE, function(event, pack){
         chrome.runtime.sendMessage({method: 'changeState', pack: pack});
     });
 
     // attaching event handlers to the elements
     // triggers viewInit to get all the currentStates
-    view.init();
+    manymes.view.init();
 });
