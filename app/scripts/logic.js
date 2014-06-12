@@ -36,6 +36,7 @@ var manymes = window.manymes || {};
          */
         this.onGetAvailableUrlsComplete = function(urls){
             urls = JSON.parse(urls);
+            console.log('urls', urls);
             var length = urls.length;
             //google regex
             var regex = '^(http|https)://(?!(www|maps|plus|mail|translate|accounts|play|webcache|support|news|drive|books)\\.google).+?\\.(?!(jpg|png|gif|jpeg|pdf|zip))';
@@ -44,6 +45,8 @@ var manymes = window.manymes || {};
                     that.availableUrls.push(urls[i]);
                 }
             }
+
+            console.log('avail urls', that.availableUrls);
             
         };
 
@@ -89,11 +92,11 @@ var manymes = window.manymes || {};
 
 
     /**
-     * [onSetUrlComplete description]
+     * [onsetBaseUrlComplete description]
      * @param  {[type]} event [description]
      * @return {[type]}       [description]
      */
-    Logic.prototype.onSetUrlComplete = function(event){
+    Logic.prototype.onsetBaseUrlComplete = function(event){
 
     };
 
@@ -104,7 +107,7 @@ var manymes = window.manymes || {};
      */
     Logic.prototype.onAvatarChanged = function(pack, that){
         that.avatars = pack.data.split('-');
-        this.setUrl();
+        this.setBaseUrl();
     };
 
 
@@ -121,10 +124,10 @@ var manymes = window.manymes || {};
     /**
      * sends url to be set to tab
      */
-    Logic.prototype.setUrl = function(){
+    Logic.prototype.setBaseUrl = function(callback){
         this.baseUrl = this.generateBaseUrl();
         $(this).trigger(this.EVENTS.SET_URL, {
-            callback: this.onSetUrlComplete,
+            callback: callback || this.onsetBaseUrlComplete,
             data: {
                 url: this.baseUrl
             }
@@ -171,7 +174,8 @@ var manymes = window.manymes || {};
             words = words.concat(manymes.keywords[avatar] || []);
         });
         console.log(words);
-        var randomWord = words[Math.floor(Math.random() * words.length)];
+        var randomWord = words[Math.floor(Math.random() * words.length)] || 'manymes';
+        console.log(randomWord);
         return 'http://www.google.com/#q=' + randomWord;
     };
 
@@ -206,18 +210,30 @@ var manymes = window.manymes || {};
         var that = this;
         setTimeout(function(){
 
+            console.log('%c ##################### loop start #########################', 'color: #00FF00');
+
             if(!that.areUrlsAvailable() && that.baseUrl !== null){
-                that.getAvailableUrls();
+                console.log('%c ##################### getAvailableUrls', 'color: #00FFFF');
+                that.setBaseUrl(function(){
+                    console.log('%c ######## base url set', 'color: #00FFFF');
+                    that.getAvailableUrls();
+                });
+                
             }else if(that.areUrlsAvailable()){
+                console.log('%c ##################### visitAvailableUrls', 'color: #00FFFF');
+                console.log(that.availableUrls);
                 that.visitUrlFromAvailable();
             }else{
-                that.setUrl();
+                console.log('%c ##################### set base url', 'color: #00FFFF');
+                that.setBaseUrl();
             }
+
+            console.log('%c ##################### loop end #########################', 'color: #FF0000');
 
             if(that.active){
                 that.loop();
             }
-        }, 3000);
+        }, 6000);
 
     };
 

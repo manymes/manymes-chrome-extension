@@ -5,11 +5,18 @@ function appendManyMesOverlay(){
     $('body').append('<div class="manymes-container">manymes is watching this tab</div>');
 }
 
-$(document).ready(function(){
-    chrome.runtime.sendMessage({method: 'getPluginTabId'}, function(){
+chrome.runtime.sendMessage({method: 'getPluginTabId'}, function(){
+
+    if(document.hasFocus()){
+        document.title = 'active';
+    }else{
+        document.title = 'inactive';
+    }
+
+    $(document).ready(function(){
         appendManyMesOverlay();
+
     });
-    
 });
 
 
@@ -30,8 +37,14 @@ chrome.runtime.onMessage.addListener(
             var urls = getLinks();
             var jsonUrls = [];
 
+            var regex = '^(?:(?!(youtube|blogger\\.com)).)*$\r?\n?';
+            var url = null;
             for(var i = 0; i < urls.length; i++){
-                jsonUrls.push(urls.splice(i, 1)[0].href);
+                url = urls.splice(i, 1)[0].href;
+                if(url.match(regex)){
+                    jsonUrls.push(url);
+                }
+                
             }
 
             sendResponse(JSON.stringify(jsonUrls));
