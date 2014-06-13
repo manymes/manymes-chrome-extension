@@ -21,8 +21,14 @@ header{
 
 footer{
     border-top: 1px solid $grey-dark;
-    text-align: right;
-    margin-top: 40px;
+    margin-top: 20px;
     padding: 10px;
     background-color: darken(#eaeaea, 5%);
+    color: #fff;
+    height: 30px;
+
+    #myonoffswitch{
+        position: absolute;
+        right: 20px;
+    }
 }

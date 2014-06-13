@@ -1,13 +1,28 @@
-$offset-avatars: 100px;
-$avatar-width: 250px;
-$avatar-height: 250px;
+$avatar-width: 200px;
+$avatar-height: 300px;
+$social-width: 300px;
 
 #configurator{
     display: block;
     position: relative;
-    width: 500px;
-    height: 250px;
-    margin-left: -25px;
+    width: $avatar-width * 3;
+    height: $avatar-height;
+
+    .social{
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        margin-left:  - $social-width / 2;
+        text-align: center;
+        background-color: darken(#eaeaea, 5%);
+        color: $grey;
+        width: $social-width;
+        border-radius: 10px;
+        height: 30px;
+        font-size: 20px;
+        line-height: 30px;
+        z-index: 4;
+    }
 
     button{
         border: none;
@@ -48,7 +63,7 @@ $avatar-height: 250px;
     }
 
     #avatar-1{
-        left: $avatar-width - $offset-avatars;
+        left: $avatar-width;
         z-index: 3;
         background: url('../images/avatars/computer.png') no-repeat;
         background-size: auto 300px;
@@ -56,7 +71,7 @@ $avatar-height: 250px;
     }
 
     #avatar-2{
-        left: $avatar-width * 2 - $offset-avatars * 2;
+        left: $avatar-width * 2;
         z-index: 1;
         background: url('../images/avatars/bayern1.png') no-repeat;
         background-size: auto 300px;

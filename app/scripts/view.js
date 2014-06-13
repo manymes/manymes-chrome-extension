@@ -11,7 +11,6 @@ var manymes = window.manymes || {};
      */
     var View = function View($container){
         this.$container = $container;
-        this.$button = $('#myonoffswitch');
 
         this.$configuratorContainer = this.$container.append('<div></div>');
 
@@ -24,6 +23,8 @@ var manymes = window.manymes || {};
             that.onAvatarChanged(event, data, that);
         });
 
+        this.$button = $('#myonoffswitch');
+        this.$label = $('.social');
 
         this.EVENTS = {
             CHANGE_STATE: 'CHANGE_STATE',
@@ -32,6 +33,9 @@ var manymes = window.manymes || {};
     };
 
     View.prototype.onAvatarChanged = function(event, data, that){
+
+        that.$label.text(data);
+
         $(that).trigger(that.EVENTS.CHANGE_STATE, {
                 type: 'avatar',
                 data: data

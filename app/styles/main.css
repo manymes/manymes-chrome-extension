@@ -20,101 +20,101 @@ header h2 {
 
 footer {
   border-top: 1px solid #384444;
-  text-align: right;
-  margin-top: 40px;
+  margin-top: 20px;
   padding: 10px;
   background-color: #dddddd;
+  color: #fff;
+  height: 30px;
+}
+footer #myonoffswitch {
+  position: absolute;
+  right: 20px;
 }
 
-/**
- * ON/OFF Switch
- */
-.label-switch {
-  align-self: center;
-  border-radius: 32px;
-  cursor: pointer;
-  display: inline-block;
-  height: 32px;
+.onoffswitch {
   position: relative;
-  vertical-align: middle;
-  width: 52px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  width: 86px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
-.label-switch input[type="checkbox"] {
+
+.onoffswitch-checkbox {
   display: none;
 }
-.label-switch input[type="checkbox"] + .checkbox {
-  background: #879292;
-  border: none;
-  border-radius: 32px;
+
+.onoffswitch-label {
+  display: block;
+  overflow: hidden;
   cursor: pointer;
-  height: 32px;
-  margin: 0;
+  border: 2px solid #999999;
+  border-radius: 50px;
+}
+
+.onoffswitch-inner {
+  display: block;
+  width: 200%;
+  margin-left: -100%;
+  -moz-transition: margin 0.3s ease-in 0s;
+  -webkit-transition: margin 0.3s ease-in 0s;
+  -o-transition: margin 0.3s ease-in 0s;
+  transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+  display: block;
+  float: left;
+  width: 50%;
+  height: 24px;
   padding: 0;
-  position: relative;
-  width: 52px;
-  z-index: 0;
-  -webkit-box-sizing: border-box;
+  line-height: 24px;
+  font-size: 18px;
+  color: white;
+  font-family: Trebuchet, Arial, sans-serif;
+  font-weight: bold;
   -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-.label-switch input[type="checkbox"] + .checkbox:before {
-  background: #ced5de;
-  border-radius: 32px;
-  content: ' ';
-  height: 28px;
-  width: 48px;
-  z-index: 1;
   -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+  content: "ON";
+  padding-left: 12px;
+  background-color: #ffb83a;
+  color: #FFFFFF;
+}
+
+.onoffswitch-inner:after {
+  content: "OFF";
+  padding-right: 12px;
+  background-color: #EEEEEE;
+  color: #999999;
+  text-align: right;
+}
+
+.onoffswitch-switch {
+  display: block;
+  width: 31px;
+  margin: -3.5px;
+  background: #FFFFFF;
+  border: 2px solid #999999;
+  border-radius: 50px;
   position: absolute;
-  top: 2px;
-  right: 0;
+  top: 0;
   bottom: 0;
-  left: 2px;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-  -webkit-transform: scale(1);
-  -moz-transform: scale(1);
-  -ms-transform: scale(1);
-  -o-transform: scale(1);
-  transform: scale(1);
+  right: 58px;
+  -moz-transition: all 0.3s ease-in 0s;
+  -webkit-transition: all 0.3s ease-in 0s;
+  -o-transition: all 0.3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
-.label-switch input[type="checkbox"] + .checkbox:after {
-  background: white;
-  border-radius: 28px;
-  content: ' ';
-  height: 28px;
-  width: 28px;
-  z-index: 2;
-  position: absolute;
-  top: 2px;
-  right: 0;
-  bottom: 0;
-  left: 2px;
-  -webkit-transition: all 0.3s ease;
-  -moz-transition: all 0.3s ease;
-  transition: all 0.3s ease;
+
+.active .onoffswitch-checkbox + .onoffswitch-label .onoffswitch-inner {
+  margin-left: 0;
 }
-.label-switch input[type="checkbox"]:checked + .checkbox {
-  background: #57bbd4;
-}
-.label-switch input[type="checkbox"]:checked + .checkbox:before {
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  -o-transform: scale(0);
-  transform: scale(0);
-}
-.label-switch input[type="checkbox"]:checked + .checkbox:after {
-  left: 22px;
+
+.active .onoffswitch-checkbox + .onoffswitch-label .onoffswitch-switch {
+  right: 0px;
 }
 
 .manymes-container {
@@ -135,9 +135,23 @@ footer {
 #configurator {
   display: block;
   position: relative;
-  width: 500px;
-  height: 250px;
-  margin-left: -25px;
+  width: 600px;
+  height: 300px;
+}
+#configurator .social {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -150px;
+  text-align: center;
+  background-color: #dddddd;
+  color: #879292;
+  width: 300px;
+  border-radius: 10px;
+  height: 30px;
+  font-size: 20px;
+  line-height: 30px;
+  z-index: 4;
 }
 #configurator button {
   border: none;
@@ -162,7 +176,7 @@ footer {
 #configurator .avatar {
   position: absolute;
   height: 250px;
-  width: 250px;
+  width: 200px;
   background-color: red;
   text-align: center;
 }
@@ -173,14 +187,14 @@ footer {
   background-position: center -50px;
 }
 #configurator #avatar-1 {
-  left: 150px;
+  left: 200px;
   z-index: 3;
   background: url("../images/avatars/computer.png") no-repeat;
   background-size: auto 300px;
   background-position: center -50px;
 }
 #configurator #avatar-2 {
-  left: 300px;
+  left: 400px;
   z-index: 1;
   background: url("../images/avatars/bayern1.png") no-repeat;
   background-size: auto 300px;
