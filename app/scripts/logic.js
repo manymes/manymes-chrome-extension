@@ -23,7 +23,8 @@ var manymes = window.manymes || {};
             GET_AVAILABLE_URLS: 'GET_AVAILABLE_URLS',
             VISIT_URL_FROM_AVAILABLE: 'VISIT_URL_FROM_AVAILABLE',
             CHANGE_STATE: 'CHANGE_STATE',
-            STATE_CHANGED: 'STATE_CHANGED'
+            STATE_CHANGED: 'STATE_CHANGED',
+            GOOGLE_URLS_READY: 'GOOGLE_URLS_READY'
         };
 
         var that = this;
@@ -34,8 +35,9 @@ var manymes = window.manymes || {};
          * @param  {string} urls urls from tab
          * @return {}
          */
-        this.onGetAvailableUrlsComplete = function(urls){
-            urls = JSON.parse(urls);
+        this.onGetAvailableUrlsComplete = function(event, pack){
+            console.log(pack);
+            var urls = JSON.parse(pack);
             console.log('urls', urls);
             var length = urls.length;
             //google regex
@@ -51,6 +53,7 @@ var manymes = window.manymes || {};
         };
 
         $(this).on(this.EVENTS.CHANGE_STATE, this.onChangeState);
+        $(this).on(this.EVENTS.GOOGLE_URLS_READY, this.onGetAvailableUrlsComplete);
     };
 
 
@@ -233,7 +236,7 @@ var manymes = window.manymes || {};
             if(that.active){
                 that.loop();
             }
-        }, 6000);
+        }, 10000);
 
     };
 

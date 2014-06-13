@@ -23,6 +23,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
             sendResponse(sender.tab);
         }
     }
+    else if(request.method === 'googleUrlsReady'){
+        $(logic).trigger(logic.EVENTS.GOOGLE_URLS_READY, request.pack);
+    }
 });
 
 
