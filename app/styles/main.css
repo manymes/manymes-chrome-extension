@@ -155,7 +155,8 @@ footer {
   outline: none;
 }
 #configurator button:hover {
-  opacity: 0.6;
+  background-color: #879292;
+  color: #ced5de;
   cursor: pointer;
 }
 #configurator .avatar {
@@ -164,10 +165,6 @@ footer {
   width: 250px;
   background-color: red;
   text-align: center;
-}
-#configurator .avatar:hover button {
-  background-color: #879292;
-  color: #ced5de;
 }
 #configurator #avatar-0 {
   z-index: 1;

@@ -26,7 +26,8 @@ $avatar-height: 250px;
         }
 
         &:hover{
-            opacity: 0.6;
+            background-color: $grey;
+            color: $grey-light;
             cursor: pointer;
         }
     }
@@ -37,13 +38,6 @@ $avatar-height: 250px;
         width: $avatar-width;
         background-color: red;
         text-align: center;
-
-        &:hover{
-            button{
-                background-color: $grey;
-                color: $grey-light;
-            }
-        }
     }
 
     #avatar-0{
