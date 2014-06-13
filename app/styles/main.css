@@ -25,10 +25,34 @@ footer {
   background-color: #dddddd;
   color: #fff;
   height: 30px;
+  position: relative;
 }
 footer #myonoffswitch {
   position: absolute;
   right: 20px;
+}
+footer .share {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-top: 2px;
+  opacity: 0.7;
+}
+footer .share.facebook {
+  background: url("../images/social/png/facebook.png") no-repeat;
+  background-size: 100%;
+}
+footer .share.gplus {
+  background: url("../images/social/png/googleplus.png") no-repeat;
+  background-size: 100%;
+}
+footer .share.twitter {
+  background: url("../images/social/png/twitter.png") no-repeat;
+  background-size: 100%;
+}
+footer .share.github {
+  background: url("../images/social/png/github.png") no-repeat;
+  background-size: 100%;
 }
 
 .onoffswitch {

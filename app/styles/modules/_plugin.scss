@@ -26,9 +26,38 @@ footer{
     background-color: darken(#eaeaea, 5%);
     color: #fff;
     height: 30px;
+    position: relative;
 
     #myonoffswitch{
         position: absolute;
         right: 20px;
+    }
+
+    .share{
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        margin-top: 2px;
+        opacity: 0.7;
+
+        &.facebook{
+            background: url('../images/social/png/facebook.png') no-repeat;
+            background-size: 100%;
+        }
+
+        &.gplus{
+            background: url('../images/social/png/googleplus.png') no-repeat;
+            background-size: 100%;
+        }
+
+        &.twitter{
+            background: url('../images/social/png/twitter.png') no-repeat;
+            background-size: 100%;
+        }
+
+        &.github{
+            background: url('../images/social/png/github.png') no-repeat;
+            background-size: 100%;
+        }
     }
 }
