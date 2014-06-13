@@ -26,14 +26,14 @@ var manymes = window.manymes || {};
 
 
     ConfiguratorView.prototype.createDOMElements = function(){
-        var str = '<div class="social"></div>';
+        var str = '<div id="configurator"><div class="social"></div>';
         for(var i = 0; i < 3; i++){
             str += '<div id="avatar-' + i + '" class="avatar">' +
                         '<button class="btn prev-btn" data-slot="' + i + '"> prev </button>' +
                         '<button class="btn next-btn" data-slot="' + i + '"> next </button>' +
                     '</div>';
         }
-        this.$container.append(str);
+        this.$container.append(str + '</div>');
 
 
     };

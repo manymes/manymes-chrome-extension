@@ -1,16 +1,9 @@
-@import "modules/_switches";
+$fg-column: 60px;             // Column Width
+$fg-gutter: 25px;             // Gutter Width
+$fg-max-columns: 12;          // Total Columns For Main Container
 
-.manymes-container {
-    position: fixed;
-    width: 100%;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    left: 0;
-    top: 0;
-    right: 0;
-    color: white;
-    z-index: 9999;
-    background-color: #D72B0C;
-    opacity: 1;
-}
+@import "../bower_components/bourbon/dist/bourbon";
+@import "modules/_plugin";
+@import "modules/_switch";
+@import "modules/_inject";
+@import "modules/_configurator";

@@ -15,6 +15,9 @@ module.exports = function (grunt) {
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
+    // Load Grunt plugins
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
     // Configurable paths
     var config = {
         app: 'app',
@@ -43,9 +46,9 @@ module.exports = function (grunt) {
             gruntfile: {
                 files: ['Gruntfile.js']
             },
-            styles: {
-                files: ['<%= config.app %>/styles/{,*/}*.css'],
-                tasks: [],
+            sass: {
+                files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
+                tasks: ['sass:dev'],
                 options: {
                     livereload: true
                 }
@@ -124,6 +127,28 @@ module.exports = function (grunt) {
                 options: {
                     run: true,
                     urls: ['http://localhost:<%= connect.options.port %>/index.html']
+                }
+            }
+        },
+
+        sass: {
+            dev: {
+                options: {
+                    style: 'expanded',
+                    banner: '/* MMP - Joscha Probst und David Neubauer */',
+                    compass: false
+                },
+                files: {
+                    '<%= config.app %>/styles/main.css': '<%= config.app %>/styles/main.scss'
+                }
+            },
+            dist: {
+                options: {
+                    style: 'compressed',
+                    compass: false
+                },
+                files: {
+                    '<%= config.app %>/styles/main.css': '<%= config.app %>/styles/main.scss'
                 }
             }
         },
@@ -251,8 +276,10 @@ module.exports = function (grunt) {
         // Run some tasks in parallel to speed up build process
         concurrent: {
             chrome: [
+                'sass:dev'
             ],
             dist: [
+                'sass:dev',
                 'imagemin',
                 'svgmin'
             ],
