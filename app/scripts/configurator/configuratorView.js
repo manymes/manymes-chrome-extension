@@ -29,8 +29,8 @@ var manymes = window.manymes || {};
         var str = '<div id="configurator"><div class="social"></div>';
         for(var i = 0; i < 3; i++){
             str += '<div id="avatar-' + i + '" class="avatar">' +
-                        '<button class="btn prev-btn" data-slot="' + i + '"> prev </button>' +
-                        '<button class="btn next-btn" data-slot="' + i + '"> next </button>' +
+                        '<button class="btn prev-btn" data-slot="' + i + '"> &lsaquo; </button>' +
+                        '<button class="btn next-btn" data-slot="' + i + '"> &rsaquo; </button>' +
                     '</div>';
         }
         this.$container.append(str + '</div>');

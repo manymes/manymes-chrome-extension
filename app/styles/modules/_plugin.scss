@@ -1,0 +1,28 @@
+body{
+    background-color: #eaeaea;
+    padding: 0;
+    margin: 0;
+}
+
+header{
+    margin-bottom: 30px; 
+    padding: 10px;
+    border-bottom: 1px solid $grey-dark;
+    background-color: darken(#eaeaea, 5%);
+
+    h2{
+        font-size: 1.5em;
+        margin: 0;
+        font-family: Helvetica, Arial, sans-serif;
+        color: $grey-dark;
+    }
+}
+
+
+footer{
+    border-top: 1px solid $grey-dark;
+    text-align: right;
+    margin-top: 40px;
+    padding: 10px;
+    background-color: darken(#eaeaea, 5%);
+}

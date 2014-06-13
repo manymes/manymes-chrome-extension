@@ -3,7 +3,7 @@
 $(document).ready(function(){
     var manymes = window.manymes || {};
 
-    manymes.view = new manymes.View($('body'));
+    manymes.view = new manymes.View($('#container'));
 
     chrome.runtime.onMessage.addListener(function(request){
         if(request.method === 'stateChanged'){

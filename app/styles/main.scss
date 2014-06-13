@@ -2,6 +2,14 @@ $fg-column: 60px;             // Column Width
 $fg-gutter: 25px;             // Gutter Width
 $fg-max-columns: 12;          // Total Columns For Main Container
 
+$orange-light: #ffb83a;
+$orange-dark: #125e7c;
+$blue-light: #57bbd4;
+$blue-dark: #023c53;
+$grey-dark: #384444;
+$grey: #879292;
+$grey-light: #ced5de;
+
 @import "../bower_components/bourbon/dist/bourbon";
 @import "modules/_plugin";
 @import "modules/_switch";

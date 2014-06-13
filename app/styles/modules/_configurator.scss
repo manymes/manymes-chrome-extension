@@ -1,0 +1,73 @@
+$offset-avatars: 100px;
+$avatar-width: 250px;
+$avatar-height: 250px;
+
+#configurator{
+    display: block;
+    position: relative;
+    width: 500px;
+    height: 250px;
+    margin-left: -25px;
+
+    button{
+        border: none;
+        background-color: darken(#eaeaea, 5%);
+        color: $grey;
+        font-size: 20px;
+        line-height: 20px;
+        border-radius: 10px;
+        width: 35px;
+        height: 25px;
+        margin: 0 2px;
+        transition: all ease-in 0.3s;
+
+        &:focus{
+            outline: none;
+        }
+
+        &:hover{
+            opacity: 0.6;
+            cursor: pointer;
+        }
+    }
+
+    .avatar{
+        position: absolute;
+        height: 250px;
+        width: $avatar-width;
+        background-color: red;
+        text-align: center;
+
+        &:hover{
+            button{
+                background-color: $grey;
+                color: $grey-light;
+            }
+        }
+    }
+
+    #avatar-0{
+        z-index: 1;
+        background: url('../images/avatars/feuerwehr.png') no-repeat;
+        background-size: auto 300px;
+        background-position: center -50px;
+    }
+
+    #avatar-1{
+        left: $avatar-width - $offset-avatars;
+        z-index: 3;
+        background: url('../images/avatars/computer.png') no-repeat;
+        background-size: auto 300px;
+        background-position: center -50px;
+    }
+
+    #avatar-2{
+        left: $avatar-width * 2 - $offset-avatars * 2;
+        z-index: 1;
+        background: url('../images/avatars/bayern1.png') no-repeat;
+        background-size: auto 300px;
+        background-position: center -50px;
+    }
+
+    @include clearfix;
+}

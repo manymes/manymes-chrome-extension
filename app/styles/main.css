@@ -1,4 +1,31 @@
 /* MMP - Joscha Probst und David Neubauer */
+body {
+  background-color: #eaeaea;
+  padding: 0;
+  margin: 0;
+}
+
+header {
+  margin-bottom: 30px;
+  padding: 10px;
+  border-bottom: 1px solid #384444;
+  background-color: #dddddd;
+}
+header h2 {
+  font-size: 1.5em;
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #384444;
+}
+
+footer {
+  border-top: 1px solid #384444;
+  text-align: right;
+  margin-top: 40px;
+  padding: 10px;
+  background-color: #dddddd;
+}
+
 /**
  * ON/OFF Switch
  */
@@ -19,7 +46,7 @@
   display: none;
 }
 .label-switch input[type="checkbox"] + .checkbox {
-  background: #e5e5e5;
+  background: #879292;
   border: none;
   border-radius: 32px;
   cursor: pointer;
@@ -37,7 +64,7 @@
   transition: all 0.3s ease;
 }
 .label-switch input[type="checkbox"] + .checkbox:before {
-  background: #ccc;
+  background: #ced5de;
   border-radius: 32px;
   content: ' ';
   height: 28px;
@@ -77,7 +104,7 @@
   transition: all 0.3s ease;
 }
 .label-switch input[type="checkbox"]:checked + .checkbox {
-  background: #37e889;
+  background: #57bbd4;
 }
 .label-switch input[type="checkbox"]:checked + .checkbox:before {
   -webkit-transform: scale(0);
@@ -103,4 +130,67 @@
   z-index: 9999;
   background-color: #D72B0C;
   opacity: 1;
+}
+
+#configurator {
+  display: block;
+  position: relative;
+  width: 500px;
+  height: 250px;
+  margin-left: -25px;
+}
+#configurator button {
+  border: none;
+  background-color: #dddddd;
+  color: #879292;
+  font-size: 20px;
+  line-height: 20px;
+  border-radius: 10px;
+  width: 35px;
+  height: 25px;
+  margin: 0 2px;
+  transition: all ease-in 0.3s;
+}
+#configurator button:focus {
+  outline: none;
+}
+#configurator button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+#configurator .avatar {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  background-color: red;
+  text-align: center;
+}
+#configurator .avatar:hover button {
+  background-color: #879292;
+  color: #ced5de;
+}
+#configurator #avatar-0 {
+  z-index: 1;
+  background: url("../images/avatars/feuerwehr.png") no-repeat;
+  background-size: auto 300px;
+  background-position: center -50px;
+}
+#configurator #avatar-1 {
+  left: 150px;
+  z-index: 3;
+  background: url("../images/avatars/computer.png") no-repeat;
+  background-size: auto 300px;
+  background-position: center -50px;
+}
+#configurator #avatar-2 {
+  left: 300px;
+  z-index: 1;
+  background: url("../images/avatars/bayern1.png") no-repeat;
+  background-size: auto 300px;
+  background-position: center -50px;
+}
+#configurator:after {
+  content: "";
+  display: table;
+  clear: both;
 }
