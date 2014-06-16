@@ -12,11 +12,11 @@ var manymes = window.manymes || {};
         this.view = view;
 
         var that = this;
-        $(this.view).on(that.view.EVENTS.PREV_AVATAR, function (event, data){
-            that.onPrevAvatar(event, data, that);
+        $(this.view).on(that.view.EVENTS.PREV_AVATAR, function (event, slot){
+            that.onPrevAvatar(event, slot, that);
         });
-        $(this.view).on(that.view.EVENTS.NEXT_AVATAR, function (event, data){
-            that.onNextAvatar(event, data, that);
+        $(this.view).on(that.view.EVENTS.NEXT_AVATAR, function (event, slot){
+            that.onNextAvatar(event, slot, that);
         });
 
         this.EVENTS = {
@@ -41,17 +41,64 @@ var manymes = window.manymes || {};
     };
 
 
-    ConfiguratorModel.prototype.getPermalink = function(){
-        return 'computer-feuerwehr-bayern';
+    ConfiguratorModel.prototype.writePermalinkToStorage = function(permalink){
+        
     };
 
-    ConfiguratorModel.prototype.onPrevAvatar = function(event, data, that){
-        console.log('prev', data, that);
+    ConfiguratorModel.prototype.getPermalinkFromStorage = function(permalink){
+        
+    };
+
+
+    ConfiguratorModel.prototype.getPermalink = function(){
+        var permalink = '';
+        for(var i = 0; i < this.activeAvatarIndices.length; i++){
+            permalink += this.allAvatars[this.activeAvatarIndices[i]].name + '-';
+        }
+        permalink = permalink.slice(0, -1);
+        this.writePermalinkToStorage(permalink);
+        return permalink;
+    };
+
+    ConfiguratorModel.prototype.getNextAvatar = function(index){
+        if(index >= this.allAvatars.length - 1){
+            index = 0;
+        }else{
+            index += 1;
+        }
+        if(this.activeAvatarIndices.indexOf(index) > -1){
+            console.log('found');
+            return this.getNextAvatar(index);
+        }else{
+            console.log('####', index);
+            return index;
+        }
+    };
+
+    ConfiguratorModel.prototype.getPrevAvatar = function(index){
+        if(index <= 0){
+            index = this.allAvatars.length - 1;
+        }else{
+            index -= 1;
+        }
+        if(this.activeAvatarIndices.indexOf(index) > -1){
+            console.log('found');
+            return this.getPrevAvatar(index);
+        }else{
+            console.log('####', index);
+            return index;
+        }
+    };
+
+
+    ConfiguratorModel.prototype.onPrevAvatar = function(event, slot, that){
+        this.activeAvatarIndices[slot] = that.getPrevAvatar(this.activeAvatarIndices[slot]);
+
         $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
     };
 
-    ConfiguratorModel.prototype.onNextAvatar = function(event, data, that){
-        console.log('next', data, that);
+    ConfiguratorModel.prototype.onNextAvatar = function(event, slot, that){
+        this.activeAvatarIndices[slot] = that.getNextAvatar(this.activeAvatarIndices[slot]);
         $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
     };
 

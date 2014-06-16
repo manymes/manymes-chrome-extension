@@ -129,12 +129,15 @@ var manymes = window.manymes || {};
      */
     Logic.prototype.setBaseUrl = function(callback){
         this.baseUrl = this.generateBaseUrl();
-        $(this).trigger(this.EVENTS.SET_URL, {
-            callback: callback || this.onsetBaseUrlComplete,
-            data: {
-                url: this.baseUrl
-            }
-        });
+        if(this.active){
+            $(this).trigger(this.EVENTS.SET_URL, {
+                callback: callback || this.onsetBaseUrlComplete,
+                data: {
+                    url: this.baseUrl
+                }
+            });
+        }
+       
     };
 
 
