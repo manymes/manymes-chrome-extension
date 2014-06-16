@@ -61,7 +61,7 @@ var manymes = window.manymes || {};
     };
 
     ConfiguratorModel.prototype.getNextAvatar = function(index){
-        if(index >= this.allAvatars.length){
+        if(index >= this.allAvatars.length - 1){
             index = 0;
         }else{
             index += 1;
@@ -77,7 +77,7 @@ var manymes = window.manymes || {};
 
     ConfiguratorModel.prototype.getPrevAvatar = function(index){
         if(index <= 0){
-            index = this.allAvatars.length-1;
+            index = this.allAvatars.length - 1;
         }else{
             index -= 1;
         }
