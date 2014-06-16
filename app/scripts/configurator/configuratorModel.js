@@ -38,6 +38,9 @@ var manymes = window.manymes || {};
         //
         //MOCK function
         this.activeAvatarIndices = [0,1,2];
+        this.allAvatars[this.activeAvatarIndices[0]].animation.start($('#avatar-0'));
+        this.allAvatars[this.activeAvatarIndices[1]].animation.start($('#avatar-1'));
+        this.allAvatars[this.activeAvatarIndices[2]].animation.start($('#avatar-2'));
     };
 
 
