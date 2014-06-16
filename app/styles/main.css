@@ -218,7 +218,6 @@
 #configurator #avatar-1 {
   left: 200px;
   z-index: 3;
-  background: url("../images/avatars/computer.png") no-repeat;
   background-size: 200px auto;
   background-position: center 0;
 }
