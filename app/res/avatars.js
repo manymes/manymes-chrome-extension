@@ -37,4 +37,22 @@ manymes.avatars = [
             'restartDelay': 3
         }]
     },
+    {
+        'name': 'maler2',
+        'id': 'maler2',
+        'animations': [{
+            'url': 'maler.png',
+            'framesDurations': [1,1,2,1],
+            'restartDelay': 3
+        }]
+    },
+    {
+        'name': 'maler3',
+        'id': 'maler3',
+        'animations': [{
+            'url': 'maler.png',
+            'framesDurations': [1,1,2,1],
+            'restartDelay': 3
+        }]
+    }
 ];

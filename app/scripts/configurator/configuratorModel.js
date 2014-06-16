@@ -61,37 +61,44 @@ var manymes = window.manymes || {};
     };
 
     ConfiguratorModel.prototype.getNextAvatar = function(index){
-        console.log(index);
         if(index >= this.allAvatars.length){
             index = 0;
         }else{
             index += 1;
         }
-        if(this.activeAvatarIndices.find(index)){
+        if(this.activeAvatarIndices.indexOf(index) > -1){
+            console.log('found');
             return this.getNextAvatar(index);
         }else{
+            console.log('####', index);
             return index;
         }
     };
 
     ConfiguratorModel.prototype.getPrevAvatar = function(index){
         if(index <= 0){
-            return this.allAvatars.length-1;
+            index = this.allAvatars.length-1;
+        }else{
+            index -= 1;
         }
-        return index-1;
+        if(this.activeAvatarIndices.indexOf(index) > -1){
+            console.log('found');
+            return this.getPrevAvatar(index);
+        }else{
+            console.log('####', index);
+            return index;
+        }
     };
 
 
     ConfiguratorModel.prototype.onPrevAvatar = function(event, slot, that){
-        this.activeAvatarIndices[slot] = that.getNextAvatar(this.activeAvatarIndices[slot]);
+        this.activeAvatarIndices[slot] = that.getPrevAvatar(this.activeAvatarIndices[slot]);
 
         $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
     };
 
     ConfiguratorModel.prototype.onNextAvatar = function(event, slot, that){
-        console.log(this.activeAvatarIndices[slot]);
-        this.activeAvatarIndices[slot] = that.getPrevAvatar(this.activeAvatarIndices[slot]);
-        console.log(this.activeAvatarIndices[slot]);
+        this.activeAvatarIndices[slot] = that.getNextAvatar(this.activeAvatarIndices[slot]);
         $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
     };
 
