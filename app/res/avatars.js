@@ -4,55 +4,61 @@ manymes.avatars = [
     {
         'name': 'bayern',
         'id': 'bayern',
-        'animations': [{
-            'url': 'bayern.png',
-            'framesDurations': [1,2,2,1],
-            'restartDelay': 5
-        }]
+        'animation': [
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 }
+        ]
     },
     {
         'name': 'feuerwehr',
         'id': 'feuerwehr',
-        'animations': [{
-            'url': 'feuerwehr.png',
-            'framesDurations': [1,2,2,1],
-            'restartDelay': 5
-        }]
+        'animation': [
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 }
+        ]
     },
     {
         'name': 'computer',
         'id': 'computer',
-        'animations': [{
-            'url': 'computer.png',
-            'framesDurations': [1,2,2,1],
-            'restartDelay': 5
-        }]
+        'animation': [
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 }
+        ]
     },
     {
         'name': 'maler',
         'id': 'maler',
-        'animations': [{
-            'url': 'maler.png',
-            'framesDurations': [1,1,2,1],
-            'restartDelay': 3
-        }]
+        'animation': [
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 }
+        ]
     },
     {
         'name': 'maler2',
         'id': 'maler2',
-        'animations': [{
-            'url': 'maler.png',
-            'framesDurations': [1,1,2,1],
-            'restartDelay': 3
-        }]
+        'animation': [
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 }
+        ]
     },
     {
         'name': 'maler3',
         'id': 'maler3',
-        'animations': [{
-            'url': 'maler.png',
-            'framesDurations': [1,1,2,1],
-            'restartDelay': 3
-        }]
+        'animation': [
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 },
+            { 'frame': 1, 'duration': 1000 }
+        ]
     }
 ];

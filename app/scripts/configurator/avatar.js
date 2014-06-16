@@ -9,9 +9,7 @@ var manymes = window.manymes || {};
         this.id = data.id;
         this.name = data.name;
 
-        // add loop to support multiple animations
-        var singleAnimation = data.animations[0];
-        this.animation = new manymes.Animation(singleAnimation);
+        this.animation = new manymes.Animation(data.animation, data.id);
 
         this.EVENTS = {
             SET_URL: 'SET_URL'
