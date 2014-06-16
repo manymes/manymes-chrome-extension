@@ -5,8 +5,9 @@ var manymes = window.manymes || {};
 
 (function (){
 
-    var Animation = function Animation(data, avatarId){
+    var Animation = function Animation(data, spriteLength, avatarId){
         this.avatarId = avatarId;
+        this.spriteLength = spriteLength;
         this.frames = data;
 
         this.$renderContainer = null;
@@ -21,7 +22,7 @@ var manymes = window.manymes || {};
         this.$renderContainer = $container;
         this.$renderContainer.css({
             'background-image': 'url(./images/avatars/' + this.avatarId + '/sprites.png)',
-            'background-size': 'auto ' + 300 * this.frames.length + 'px',
+            'background-size': 'auto ' + 300 * this.spriteLength + 'px',
             'background-repeat': 'no-repeat'
         });
         this.addTimer();
@@ -42,11 +43,12 @@ var manymes = window.manymes || {};
     };
 
     Animation.prototype.nextFrame = function(){
-        if(this.currentFrame === this.frames.length - 1){
+        if(this.currentFrame === this.spriteLength - 1){
             this.currentFrame = 0;
         } else {
             this.currentFrame++;
         }
+        
         this.$renderContainer.css('background-position-y', -300 * this.currentFrame - 45);
     };
 
