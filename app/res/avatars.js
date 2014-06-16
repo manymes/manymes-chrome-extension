@@ -18,7 +18,7 @@ manymes.avatars = [
             { 'frame': 2, 'duration': 200 },
             { 'frame': 3, 'duration': 200 },
             { 'frame': 2, 'duration': 200 },
-            { 'frame': 0, 'duration': 10000 },
+            { 'frame': 0, 'duration': 1000 },
             { 'frame': 2, 'duration': 200 },
             { 'frame': 3, 'duration': 200 },
             { 'frame': 2, 'duration': 200 }
