@@ -39,6 +39,9 @@
             ],
             "js": [
                 "bower_components/jquery/dist/jquery.js",
+                "scripts/configurator/animation.js",
+                "scripts/configurator/avatar.js",
+                "res/avatars.js",
                 "scripts/contentscript.js"
             ],
             "run_at": "document_end",

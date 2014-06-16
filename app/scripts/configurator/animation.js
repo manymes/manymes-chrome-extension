@@ -34,12 +34,10 @@ var manymes = window.manymes || {};
 
     Animation.prototype.addTimer = function(){
         var that = this;
-
         function timer() {
             that.nextFrame();
             that.timer = setTimeout(timer, that.frames[that.currentFrame].duration);
-        };
-
+        }
         timer();
     };
 
