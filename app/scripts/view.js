@@ -31,14 +31,19 @@ var manymes = window.manymes || {};
             STATE_CHANGED: 'STATE_CHANGED'
         };
     };
+    /**
+     * sets the label on the popup and triggers CHANGE_STATE
+     * @param  {event} event
+     * @param  {string} permalink
+     * @param  {object} that
+     */
+    View.prototype.onAvatarChanged = function(event, permalink, that){
 
-    View.prototype.onAvatarChanged = function(event, data, that){
-
-        that.$label.text(data);
+        that.$label.text(permalink);
 
         $(that).trigger(that.EVENTS.CHANGE_STATE, {
                 type: 'avatar',
-                data: data
+                data: permalink
             });
     };
 

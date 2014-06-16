@@ -13,10 +13,15 @@ manymes.avatars = [
         'id': 'bayern',
         'spriteLength': 4,
         'animation': [
-            { 'frame': 0, 'duration': 100 },
-            { 'frame': 0, 'duration': 100 },
-            { 'frame': 2, 'duration': 100 },
-            { 'frame': 3, 'duration': 100 }
+            { 'frame': 1, 'duration': 100 },
+            { 'frame': 0, 'duration': 200 },
+            { 'frame': 2, 'duration': 200 },
+            { 'frame': 3, 'duration': 200 },
+            { 'frame': 2, 'duration': 200 },
+            { 'frame': 0, 'duration': 10000 },
+            { 'frame': 2, 'duration': 200 },
+            { 'frame': 3, 'duration': 200 },
+            { 'frame': 2, 'duration': 200 }
         ]
     },
     {

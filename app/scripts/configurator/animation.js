@@ -43,12 +43,11 @@ var manymes = window.manymes || {};
     };
 
     Animation.prototype.nextFrame = function(){
-        if(this.currentFrame === this.spriteLength - 1){
+        if(this.currentFrame === this.frames.length - 1){
             this.currentFrame = 0;
         } else {
             this.currentFrame++;
         }
-
         var newOffset = - 300 * this.frames[this.currentFrame].frame;
         this.$renderContainer.css('background-position-y', newOffset - 45);
     };

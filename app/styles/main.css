@@ -154,13 +154,25 @@
   opacity: 1;
 }
 
-#manymes-avatar {
+#manymes-sack {
   position: fixed;
   left: 0;
+  bottom: 0;
+  height: 150px;
+  width: 100px;
+  z-index: 9999;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#manymes-avatar {
+  position: fixed;
+  right: 0;
   bottom: 0;
   height: 250px;
   width: 200px;
   z-index: 9999;
+  background-repeat: no-repeat;
 }
 
 #configurator {

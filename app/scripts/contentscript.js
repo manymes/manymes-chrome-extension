@@ -4,7 +4,10 @@
 
 
 function appendManyMesOverlay(){
-    $('body').append('<div class="manymes-container">manymes is watching this tab</div><div id="manymes-avatar">avatar</div>');
+    $('body').append('<div class="manymes-container">manymes is watching this tab</div></div><div id="manymes-avatar"></div>');
+    var sack = $('<div>').attr('id', 'manymes-sack');
+    sack.css('background-image', 'url(' + chrome.extension.getURL('images/icon/sack.png') + ')');
+    $('body').append(sack);
 
     var avatar = new manymes.Avatar(manymes.avatars[0]);
     avatar.animation.start($('#manymes-avatar'));
