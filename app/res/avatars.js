@@ -27,23 +27,38 @@ manymes.avatars = [
     {
         'name': 'feuerwehr',
         'id': 'feuerwehr',
-        'spriteLength': 1,
+        'spriteLength': 5,
         'animation': [
-            { 'frame': 0, 'duration': 1000 },
-            { 'frame': 0, 'duration': 1000 },
-            { 'frame': 0, 'duration': 1000 },
-            { 'frame': 0, 'duration': 1000 }
+            { 'frame': 0, 'duration': 800 },
+            { 'frame': 2, 'duration': 200 },
+            { 'frame': 3, 'duration': 200 },
+            { 'frame': 4, 'duration': 200 },
+            { 'frame': 0, 'duration': 800 },
+            { 'frame': 2, 'duration': 200 },
+            { 'frame': 3, 'duration': 200 },
+            { 'frame': 4, 'duration': 200 },
+            { 'frame': 0, 'duration': 800 },
+            { 'frame': 1, 'duration': 100 },
         ]
     },
     {
         'name': 'computer',
         'id': 'computer',
-        'spriteLength': 1,
+        'spriteLength': 3,
         'animation': [
-            { 'frame': 0, 'duration': 1000 },
-            { 'frame': 0, 'duration': 1000 },
-            { 'frame': 0, 'duration': 1000 },
-            { 'frame': 0, 'duration': 1000 }
+            { 'frame': 0, 'duration': 600 },
+            { 'frame': 2, 'duration': 200 },
+            { 'frame': 0, 'duration': 200 },
+            { 'frame': 1, 'duration': 10 },
+            { 'frame': 0, 'duration': 200 },
+            { 'frame': 2, 'duration': 100 },
+            { 'frame': 0, 'duration': 100 },
+            { 'frame': 1, 'duration': 80 },
+            { 'frame': 1, 'duration': 10 },
+            { 'frame': 0, 'duration': 100 },
+            { 'frame': 2, 'duration': 100 },
+            { 'frame': 0, 'duration': 50 },
+            { 'frame': 2, 'duration': 150 }
         ]
     },
     {
