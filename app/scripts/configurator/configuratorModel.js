@@ -12,11 +12,11 @@ var manymes = window.manymes || {};
         this.view = view;
 
         var that = this;
-        $(this.view).on(that.view.EVENTS.PREV_AVATAR, function (event, data){
-            that.onPrevAvatar(event, data, that);
+        $(this.view).on(that.view.EVENTS.PREV_AVATAR, function (event, slot){
+            that.onPrevAvatar(event, slot, that);
         });
-        $(this.view).on(that.view.EVENTS.NEXT_AVATAR, function (event, data){
-            that.onNextAvatar(event, data, that);
+        $(this.view).on(that.view.EVENTS.NEXT_AVATAR, function (event, slot){
+            that.onNextAvatar(event, slot, that);
         });
 
         this.EVENTS = {
@@ -42,16 +42,38 @@ var manymes = window.manymes || {};
 
 
     ConfiguratorModel.prototype.getPermalink = function(){
-        return 'computer-feuerwehr-bayern';
+        var permalink = '';
+        for(var i = 0; i < this.activeAvatarIndices.length; i++){
+            permalink += this.allAvatars[this.activeAvatarIndices[i]].name + '-';
+        }
+        return permalink;
     };
 
-    ConfiguratorModel.prototype.onPrevAvatar = function(event, data, that){
-        console.log('prev', data, that);
+    ConfiguratorModel.prototype.getNextAvatar = function(index){
+        if(index >= this.allAvatars.length){
+            return 0;
+        }
+        return index+1;
+    };
+
+    ConfiguratorModel.prototype.getPrevAvatar = function(index){
+        if(index <= 0){
+            return this.allAvatars.length-1;
+        }
+        return index-1;
+    };
+
+
+    ConfiguratorModel.prototype.onPrevAvatar = function(event, slot, that){
+        this.activeAvatarIndices[slot] = that.getNextAvatar(this.activeAvatarIndices[slot]);
+
         $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
     };
 
-    ConfiguratorModel.prototype.onNextAvatar = function(event, data, that){
-        console.log('next', data, that);
+    ConfiguratorModel.prototype.onNextAvatar = function(event, slot, that){
+        console.log(this.activeAvatarIndices[slot]);
+        this.activeAvatarIndices[slot] = that.getPrevAvatar(this.activeAvatarIndices[slot]);
+        console.log(this.activeAvatarIndices[slot]);
         $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
     };
 
