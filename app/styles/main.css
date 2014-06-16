@@ -161,7 +161,6 @@
   height: 250px;
   width: 200px;
   z-index: 9999;
-  background-color: grey;
 }
 
 #configurator {
@@ -219,7 +218,6 @@
 #configurator #avatar-1 {
   left: 200px;
   z-index: 3;
-  background: url("../images/avatars/computer.png") no-repeat;
   background-size: 200px auto;
   background-position: center 0;
 }
@@ -228,9 +226,4 @@
   z-index: 1;
   background-size: auto 300px;
   background-position: center 0;
-}
-#configurator:after {
-  content: "";
-  display: table;
-  clear: both;
 }

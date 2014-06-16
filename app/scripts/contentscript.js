@@ -1,3 +1,5 @@
+/*global manymes */
+
 'use strict';
 
 
@@ -23,29 +25,36 @@ function clearImgSrc(){
     });
 }
 
+function setFavicon() {
+    var link = document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon';
+    link.href = chrome.extension.getURL('images/icon/favicon.png');
+    document.getElementsByTagName('head')[0].appendChild(link);
+}
+
 chrome.runtime.sendMessage({method: 'getPluginTabId'}, function(){
 
 
-    if(document.hasFocus()){
-        document.title = 'active';
-    }else{
-        document.title = 'inactive';
+    if(!document.hasFocus()){
         muteAudioVideo();
         clearImgSrc();
     }
 
+    $(window).unload(function() {
+        chrome.runtime.sendMessage({method: 'tabClosed'});
+    });
+
     $(document).ready(function(){
         appendManyMesOverlay();
-        /********   development  ***********/
-        muteAudioVideo();
-        //$('img').removeAttr('src');
-        /********   /development  ***********/
+        setFavicon();
+        document.title = 'MANYMES';
     });
 });
 
 
 chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
+    function(request) {
         if(request.method === 'getAvailableUrlsFromTab'){
             
             $(document).ready(function(){

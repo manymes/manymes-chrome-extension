@@ -34,14 +34,39 @@ var manymes = window.manymes || {};
     };
 
     ConfiguratorModel.prototype.initActiveAvatarIndices = function(){
-        //DOTO - get them from localstorage
-        //
-        //MOCK function
-        this.activeAvatarIndices = [0,1,2];
-        this.allAvatars[this.activeAvatarIndices[0]].animation.start($('#avatar-0'));
-        this.allAvatars[this.activeAvatarIndices[1]].animation.start($('#avatar-1'));
-        this.allAvatars[this.activeAvatarIndices[2]].animation.start($('#avatar-2'));
+
+        var that = this;
+        chrome.storage.local.get('activeAvatarIndices', function (result) {
+            if($.isEmptyObject(result)){
+                console.log('empty');
+                chrome.storage.local.set({'activeAvatarIndices': JSON.stringify([0,1,2])}, function () {
+                    console.log('set');
+                    that.activeAvatarIndices = [0,1,2];
+                });
+            }else{
+                console.log('from local storage');
+                that.activeAvatarIndices = JSON.parse(result.activeAvatarIndices);
+            }
+            
+
+            that.allAvatars[that.activeAvatarIndices[0]].animation.start($('#avatar-0'));
+            that.allAvatars[that.activeAvatarIndices[1]].animation.start($('#avatar-1'));
+            that.allAvatars[that.activeAvatarIndices[2]].animation.start($('#avatar-2'));
+
+            $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
+        });
     };
+
+    ConfiguratorModel.prototype.setActiveAvatarIndex = function(slot){
+        this.allAvatars[this.activeAvatarIndices[slot]].animation.stop();
+        this.activeAvatarIndices[slot] = this.getPrevAvatar(this.activeAvatarIndices[slot]);
+        this.allAvatars[this.activeAvatarIndices[slot]].animation.start($('#avatar-' + slot));
+        $(this).trigger(this.EVENTS.AVATAR_CHANGED, this.getPermalink());
+        chrome.storage.local.set({'activeAvatarIndices': JSON.stringify(this.activeAvatarIndices)}, function () {
+            console.log('set active avatar index');
+        });
+    };
+
 
 
     ConfiguratorModel.prototype.writePermalinkToStorage = function(permalink){
@@ -95,18 +120,12 @@ var manymes = window.manymes || {};
 
 
     ConfiguratorModel.prototype.onPrevAvatar = function(event, slot, that){
-        this.allAvatars[this.activeAvatarIndices[slot]].animation.stop();
-        this.activeAvatarIndices[slot] = that.getPrevAvatar(this.activeAvatarIndices[slot]);
-        this.allAvatars[this.activeAvatarIndices[slot]].animation.start($('#avatar-' + slot));
-        $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
+        this.setActiveAvatarIndex(slot);
     };
 
     ConfiguratorModel.prototype.onNextAvatar = function(event, slot, that){
-        this.allAvatars[this.activeAvatarIndices[slot]].animation.stop();
-        this.activeAvatarIndices[slot] = that.getNextAvatar(this.activeAvatarIndices[slot]);
-        this.allAvatars[this.activeAvatarIndices[slot]].animation.start($('#avatar-' + slot));
-
-        $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
+        this.setActiveAvatarIndex(slot);
+        
     };
 
 
