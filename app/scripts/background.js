@@ -116,7 +116,6 @@ $(logic).on(logic.EVENTS.VISIT_URL_FROM_AVAILABLE, function(event, pack){
                 if (changeInfo.status === 'complete') {
                     // remove listener, so only run once
                     chrome.tabs.onUpdated.removeListener(listener);
-                    pack.callback();
                 }
             };
 

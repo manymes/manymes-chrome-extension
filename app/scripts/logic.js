@@ -150,7 +150,6 @@ var manymes = window.manymes || {};
     Logic.prototype.visitUrlFromAvailable = function(){
         var randomUrl = this.getRandomAvailableUrl();
         $(this).trigger(this.EVENTS.VISIT_URL_FROM_AVAILABLE, {
-            callback: this.onVisitUrlFromAvailableComplete,
             data: {
                 url: randomUrl
             }
