@@ -41,19 +41,37 @@ var manymes = window.manymes || {};
     };
 
 
+    ConfiguratorModel.prototype.writePermalinkToStorage = function(permalink){
+        
+    };
+
+    ConfiguratorModel.prototype.getPermalinkFromStorage = function(permalink){
+        
+    };
+
+
     ConfiguratorModel.prototype.getPermalink = function(){
         var permalink = '';
         for(var i = 0; i < this.activeAvatarIndices.length; i++){
             permalink += this.allAvatars[this.activeAvatarIndices[i]].name + '-';
         }
+        permalink = permalink.slice(0, -1);
+        this.writePermalinkToStorage(permalink);
         return permalink;
     };
 
     ConfiguratorModel.prototype.getNextAvatar = function(index){
+        console.log(index);
         if(index >= this.allAvatars.length){
-            return 0;
+            index = 0;
+        }else{
+            index += 1;
         }
-        return index+1;
+        if(this.activeAvatarIndices.find(index)){
+            return this.getNextAvatar(index);
+        }else{
+            return index;
+        }
     };
 
     ConfiguratorModel.prototype.getPrevAvatar = function(index){
