@@ -11,20 +11,17 @@ var manymes = window.manymes || {};
      */
     var View = function View($container){
         this.$container = $container;
-
+        this.$button = $('#myonoffswitch');
+        this.$label = $('.social');
         this.$configuratorContainer = this.$container.append('<div></div>');
 
         this.configuratorView = new manymes.ConfiguratorView(this.$configuratorContainer);
         this.configuratorModel = new manymes.ConfiguratorModel(this.configuratorView);
 
         var that = this;
-
         $(this.configuratorModel).on(that.configuratorModel.EVENTS.AVATAR_CHANGED, function (event, data){
             that.onAvatarChanged(event, data, that);
         });
-
-        this.$button = $('#myonoffswitch');
-        this.$label = $('.social');
 
         this.EVENTS = {
             CHANGE_STATE: 'CHANGE_STATE',
@@ -61,7 +58,6 @@ var manymes = window.manymes || {};
                 type: 'active',
                 data: { }
             });
-
             that.$button.toggleClass('active');
         });
 
@@ -80,9 +76,7 @@ var manymes = window.manymes || {};
      * @return {}
      */
     View.prototype.onStateChanged = function(event, pack){
-        if(pack.type === 'active'){
-            // nothing will happen
-        } else if(pack.type === 'viewInit'){
+        if(pack.type === 'viewInit'){
             if(pack.data.state){ // onload state is false
                 this.$button.toggleClass('active');
             }

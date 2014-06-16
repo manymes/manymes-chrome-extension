@@ -37,19 +37,14 @@ var manymes = window.manymes || {};
          * @return {}
          */
         this.onGetAvailableUrlsComplete = function(event, pack){
-            console.log(pack);
             var urls = JSON.parse(pack);
-            console.log('urls', urls);
             var length = urls.length;
-            //google regex
             var regex = '^(http|https)://.+?\\.(?!(jpg|png|gif|jpeg|pdf|zip))';
             for(var i = 0; i < length; i++){
                 if(urls[i].match(regex)){
                     that.availableUrls.push(urls[i]);
                 }
             }
-
-            console.log('avail urls', that.availableUrls);
             
         };
 
@@ -66,28 +61,39 @@ var manymes = window.manymes || {};
      * @return {}
      */
     Logic.prototype.onChangeState = function(event, pack){
-        if(pack.type === 'active'){
-            this.active = !this.active;
-            if(this.active){
-                this.loop();
-            }else{
-                this.currentUrl = null;
-            }
-            $(this).trigger(this.EVENTS.STATE_CHANGED, {
-                type: 'active',
-                data: {
-                    state: this.active
+        switch(pack.type){
+
+            case 'active':
+                this.active = !this.active;
+                if(this.active){
+                    this.loop();
+                }else{
+                    this.currentUrl = null;
                 }
-            });
-        } else if (pack.type === 'viewInit'){
-            $(this).trigger(this.EVENTS.STATE_CHANGED, {
-                type: 'viewInit',
-                data: {
-                    state: this.active
-                }
-            });
-        } else if (pack.type === 'avatar'){
-            this.onAvatarChanged(pack, this);
+                $(this).trigger(this.EVENTS.STATE_CHANGED, {
+                    type: 'active',
+                    data: {
+                        state: this.active
+                    }
+                });
+                break;
+
+            case 'viewInit':
+                $(this).trigger(this.EVENTS.STATE_CHANGED, {
+                    type: 'viewInit',
+                    data: {
+                        state: this.active
+                    }
+                });
+                break;
+
+            case 'avatar':
+                this.onAvatarChanged(pack, this);
+                break;
+     
+            default:
+            
+                break;
         }
         
     };
@@ -166,9 +172,7 @@ var manymes = window.manymes || {};
         this.avatars.forEach(function(avatar) {
             words = words.concat(manymes.keywords[avatar] || []);
         });
-        console.log(words);
         var randomWord = words[Math.floor(Math.random() * words.length)] || 'manymes';
-        console.log(randomWord);
         return 'http://www.google.com/#q=' + randomWord;
     };
 
@@ -209,7 +213,6 @@ var manymes = window.manymes || {};
                 });
                 
             }else if(that.areUrlsAvailable()){
-                console.log(that.availableUrls);
                 that.visitUrlFromAvailable();
             }else{
                 that.setBaseUrl();

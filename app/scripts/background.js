@@ -15,32 +15,35 @@ var logic = new manymes.Logic();
  * @return {}
  */
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-    if(request.method === 'changeState'){
-        $(logic).trigger(logic.EVENTS.CHANGE_STATE, request.pack);
-    }
-    else if(request.method === 'getPluginTabId'){
-        if(sender.tab.id === tabId){
-            sendResponse(sender.tab);
-        }
-    }
-    else if(request.method === 'googleUrlsReady'){
-        $(logic).trigger(logic.EVENTS.GOOGLE_URLS_READY, request.pack);
-    }
-    else if(request.method === 'tabClosed'){
 
-        chrome.tabs.query({}, function(tabs){
-            var removed = true;
-            for (var i = 0; i < tabs.length; i++) {
-                console.log(tabs[i].id, sender.tab.id);
-                if(tabs[i].id === sender.tab.id){
-                    removed = false;
+    switch(request.method){
+        case 'changeState':
+            $(logic).trigger(logic.EVENTS.CHANGE_STATE, request.pack);
+            break;
+        case 'getPluginTabId':
+            if(sender.tab.id === tabId){
+                sendResponse(sender.tab);
+            }
+            break;
+        case 'googleUrlsReady':
+            $(logic).trigger(logic.EVENTS.GOOGLE_URLS_READY, request.pack);
+            break;
+        case 'tabClosed':
+            chrome.tabs.query({}, function(tabs){
+                var removed = true;
+                for (var i = 0; i < tabs.length; i++) {
+                    if(tabs[i].id === sender.tab.id){
+                        removed = false;
+                    }
                 }
-            }
-            if(removed){
-                console.log('removed');
-                $(logic).trigger(logic.EVENTS.TAB_CLOSED);
-            }
-        });
+                if(removed){
+                    $(logic).trigger(logic.EVENTS.TAB_CLOSED);
+                }
+            });
+            break;
+        default:
+        
+            break;
     }
 });
 
