@@ -154,6 +154,16 @@
   opacity: 1;
 }
 
+#manymes-avatar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 250px;
+  width: 200px;
+  z-index: 9999;
+  background-color: grey;
+}
+
 #configurator {
   display: block;
   position: relative;
@@ -164,11 +174,11 @@
   position: absolute;
   bottom: 0;
   left: 50%;
-  margin-left: -150px;
+  margin-left: -400px;
   text-align: center;
   background-color: #dddddd;
   color: #879292;
-  width: 300px;
+  width: 800px;
   border-radius: 10px;
   height: 30px;
   font-size: 20px;
@@ -199,28 +209,25 @@
   position: absolute;
   height: 250px;
   width: 200px;
-  background-color: red;
   text-align: center;
 }
 #configurator #avatar-0 {
   z-index: 1;
-  background: url("../images/avatars/feuerwehr.png") no-repeat;
-  background-size: auto 300px;
-  background-position: center -50px;
+  background-size: 100px auto;
+  background-position: center 0;
 }
 #configurator #avatar-1 {
   left: 200px;
   z-index: 3;
   background: url("../images/avatars/computer.png") no-repeat;
-  background-size: auto 300px;
-  background-position: center -50px;
+  background-size: 200px auto;
+  background-position: center 0;
 }
 #configurator #avatar-2 {
   left: 400px;
   z-index: 1;
-  background: url("../images/avatars/bayern1.png") no-repeat;
   background-size: auto 300px;
-  background-position: center -50px;
+  background-position: center 0;
 }
 #configurator:after {
   content: "";

@@ -2,7 +2,7 @@
 
 
 function appendManyMesOverlay(){
-    $('body').append('<div class="manymes-container">manymes is watching this tab</div>');
+    $('body').append('<div class="manymes-container">manymes is watching this tab</div><div id="manymes-avatar">avatar</div>');
 }
 
 function muteAudioVideo(){

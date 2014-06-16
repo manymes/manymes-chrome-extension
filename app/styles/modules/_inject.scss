@@ -12,3 +12,13 @@
     background-color: #D72B0C;
     opacity: 1;
 }
+
+#manymes-avatar{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 250px;
+    width: 200px;
+    z-index: 9999;
+    background-color: grey;
+}

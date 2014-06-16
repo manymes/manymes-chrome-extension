@@ -1,6 +1,6 @@
 $avatar-width: 200px;
 $avatar-height: 300px;
-$social-width: 300px;
+$social-width: 800px;
 
 #configurator{
     display: block;
@@ -51,31 +51,30 @@ $social-width: 300px;
         position: absolute;
         height: 250px;
         width: $avatar-width;
-        background-color: red;
         text-align: center;
     }
 
     #avatar-0{
         z-index: 1;
-        background: url('../images/avatars/feuerwehr.png') no-repeat;
-        background-size: auto 300px;
-        background-position: center -50px;
+        // background: url('../images/avatars/feuerwehr.png') no-repeat;
+        background-size: 100px auto;
+        background-position: center 0;
     }
 
     #avatar-1{
         left: $avatar-width;
         z-index: 3;
         background: url('../images/avatars/computer.png') no-repeat;
-        background-size: auto 300px;
-        background-position: center -50px;
+        background-size: 200px auto;
+        background-position: center 0;
     }
 
     #avatar-2{
         left: $avatar-width * 2;
         z-index: 1;
-        background: url('../images/avatars/bayern1.png') no-repeat;
+        // background: url('../images/avatars/bayern1.png') no-repeat;
         background-size: auto 300px;
-        background-position: center -50px;
+        background-position: center 0;
     }
 
     @include clearfix;
