@@ -42,7 +42,7 @@ var manymes = window.manymes || {};
             console.log('urls', urls);
             var length = urls.length;
             //google regex
-            var regex = '^(http|https)://(?!(www|maps|plus|mail|translate|accounts|play|webcache|support|news|drive|books)\\.google).+?\\.(?!(jpg|png|gif|jpeg|pdf|zip))';
+            var regex = '^(http|https)://.+?\\.(?!(jpg|png|gif|jpeg|pdf|zip))';
             for(var i = 0; i < length; i++){
                 if(urls[i].match(regex)){
                     that.availableUrls.push(urls[i]);
@@ -95,15 +95,6 @@ var manymes = window.manymes || {};
 
     /*Callback functions*/
 
-
-    /**
-     * [onsetBaseUrlComplete description]
-     * @param  {[type]} event [description]
-     * @return {[type]}       [description]
-     */
-    Logic.prototype.onsetBaseUrlComplete = function(event){
-
-    };
     /**
      * called when tab of plugin is closed to set active to false
      */
@@ -120,17 +111,6 @@ var manymes = window.manymes || {};
         that.avatars = pack.data.split('-');
         this.setBaseUrl();
     };
-
-
-    /**
-     * [onVisitUrlFromAvailableComplete description]
-     * @param  {[type]} event [description]
-     * @return {[type]}       [description]
-     */
-    Logic.prototype.onVisitUrlFromAvailableComplete = function(event){
-
-    };
-
 
     /**
      * sends url to be set to tab
@@ -222,31 +202,24 @@ var manymes = window.manymes || {};
      */
     Logic.prototype.loop = function(){
         var that = this;
-        console.log('%c ##################### loop start #########################', 'color: #00FF00');
         setTimeout(function(){
 
             if(!that.areUrlsAvailable() && that.baseUrl !== null){
-                console.log('%c ##################### getAvailableUrls', 'color: #00FFFF');
                 that.setBaseUrl(function(){
-                    console.log('%c ######## base url set', 'color: #00FFFF');
                     that.getAvailableUrls();
                 });
                 
             }else if(that.areUrlsAvailable()){
-                console.log('%c ##################### visitAvailableUrls', 'color: #00FFFF');
                 console.log(that.availableUrls);
                 that.visitUrlFromAvailable();
             }else{
-                console.log('%c ##################### set base url', 'color: #00FFFF');
                 that.setBaseUrl();
             }
-
-            console.log('%c ##################### loop end #########################', 'color: #FF0000');
 
             if(that.active){
                 that.loop();
             }
-        }, 20000);
+        }, 10000);
 
     };
 

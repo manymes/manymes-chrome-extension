@@ -30,13 +30,13 @@ manymes.avatars = [
         'spriteLength': 5,
         'animation': [
             { 'frame': 0, 'duration': 800 },
-            { 'frame': 2, 'duration': 200 },
-            { 'frame': 3, 'duration': 200 },
-            { 'frame': 4, 'duration': 200 },
+            { 'frame': 2, 'duration': 150 },
+            { 'frame': 3, 'duration': 150 },
+            { 'frame': 4, 'duration': 150 },
             { 'frame': 0, 'duration': 800 },
-            { 'frame': 2, 'duration': 200 },
-            { 'frame': 3, 'duration': 200 },
-            { 'frame': 4, 'duration': 200 },
+            { 'frame': 2, 'duration': 150 },
+            { 'frame': 3, 'duration': 150 },
+            { 'frame': 4, 'duration': 150 },
             { 'frame': 0, 'duration': 800 },
             { 'frame': 1, 'duration': 100 },
         ]
@@ -46,7 +46,7 @@ manymes.avatars = [
         'id': 'computer',
         'spriteLength': 3,
         'animation': [
-            { 'frame': 0, 'duration': 600 },
+            { 'frame': 0, 'duration': 300 },
             { 'frame': 2, 'duration': 200 },
             { 'frame': 0, 'duration': 200 },
             { 'frame': 1, 'duration': 10 },

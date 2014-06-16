@@ -28,9 +28,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     }
     else if(request.method === 'tabClosed'){
 
-        chrome.tabs.getAllInWindow(null, function(tabs){
+        chrome.tabs.query({}, function(tabs){
             var removed = true;
             for (var i = 0; i < tabs.length; i++) {
+                console.log(tabs[i].id, sender.tab.id);
                 if(tabs[i].id === sender.tab.id){
                     removed = false;
                 }

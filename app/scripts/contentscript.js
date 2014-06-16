@@ -11,7 +11,7 @@ function appendManyMesOverlay(){
     sack.css('background-image', 'url(' + chrome.extension.getURL('images/icon/sack.png') + ')');
     $('body').append(sack);
 
-    var avatar = new manymes.Avatar(manymes.avatars[0]);
+    var avatar = new manymes.Avatar(manymes.avatars[2]);
     avatar.animation.start($('#manymes-avatar'));
 }
 
