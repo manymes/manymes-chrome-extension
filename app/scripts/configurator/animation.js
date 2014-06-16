@@ -49,7 +49,8 @@ var manymes = window.manymes || {};
             this.currentFrame++;
         }
         
-        this.$renderContainer.css('background-position-y', -300 * this.currentFrame - 45);
+        var newOffset = - 300 * this.frames[this.currentFrame].frame;
+        this.$renderContainer.css('background-position-y', newOffset - 45);
     };
 
     manymes.Animation = Animation;
