@@ -27,7 +27,19 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
         $(logic).trigger(logic.EVENTS.GOOGLE_URLS_READY, request.pack);
     }
     else if(request.method === 'tabClosed'){
-        $(logic).trigger(logic.EVENTS.TAB_CLOSED);
+
+        chrome.tabs.getAllInWindow(null, function(tabs){
+            var removed = true;
+            for (var i = 0; i < tabs.length; i++) {
+                if(tabs[i].id === sender.tab.id){
+                    removed = false;
+                }
+            }
+            if(removed){
+                console.log('removed');
+                $(logic).trigger(logic.EVENTS.TAB_CLOSED);
+            }
+        });
     }
 });
 

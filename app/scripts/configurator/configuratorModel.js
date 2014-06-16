@@ -52,11 +52,16 @@ var manymes = window.manymes || {};
             that.allAvatars[that.activeAvatarIndices[0]].animation.start($('#avatar-0'));
             that.allAvatars[that.activeAvatarIndices[1]].animation.start($('#avatar-1'));
             that.allAvatars[that.activeAvatarIndices[2]].animation.start($('#avatar-2'));
+
+            $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
         });
     };
 
     ConfiguratorModel.prototype.setActiveAvatarIndex = function(slot){
+        this.allAvatars[this.activeAvatarIndices[slot]].animation.stop();
         this.activeAvatarIndices[slot] = this.getPrevAvatar(this.activeAvatarIndices[slot]);
+        this.allAvatars[this.activeAvatarIndices[slot]].animation.start($('#avatar-' + slot));
+        $(this).trigger(this.EVENTS.AVATAR_CHANGED, this.getPermalink());
         chrome.storage.local.set({'activeAvatarIndices': JSON.stringify(this.activeAvatarIndices)}, function () {
             console.log('set active avatar index');
         });
@@ -115,18 +120,12 @@ var manymes = window.manymes || {};
 
 
     ConfiguratorModel.prototype.onPrevAvatar = function(event, slot, that){
-        this.allAvatars[this.activeAvatarIndices[slot]].animation.stop();
         this.setActiveAvatarIndex(slot);
-        this.allAvatars[this.activeAvatarIndices[slot]].animation.start($('#avatar-' + slot));
-        $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
     };
 
     ConfiguratorModel.prototype.onNextAvatar = function(event, slot, that){
-        this.allAvatars[this.activeAvatarIndices[slot]].animation.stop();
         this.setActiveAvatarIndex(slot);
-        this.allAvatars[this.activeAvatarIndices[slot]].animation.start($('#avatar-' + slot));
-
-        $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
+        
     };
 
 
