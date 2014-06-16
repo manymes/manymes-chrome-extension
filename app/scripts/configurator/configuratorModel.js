@@ -19,7 +19,6 @@ var manymes = window.manymes || {};
             that.onNextAvatar(event, data, that);
         });
 
-
         this.EVENTS = {
             AVATAR_CHANGED: 'AVATAR_CHANGED'
         };

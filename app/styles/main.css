@@ -1,24 +1,22 @@
 /* MMP - Joscha Probst und David Neubauer */
-body {
+#manymes {
   background-color: #eaeaea;
   padding: 0;
   margin: 0;
 }
-
-header {
+#manymes header {
   margin-bottom: 30px;
   padding: 10px;
   border-bottom: 1px solid #384444;
   background-color: #dddddd;
 }
-header h2 {
+#manymes header h2 {
   font-size: 1.5em;
   margin: 0;
   font-family: Helvetica, Arial, sans-serif;
   color: #384444;
 }
-
-footer {
+#manymes footer {
   border-top: 1px solid #384444;
   margin-top: 20px;
   padding: 10px;
@@ -27,30 +25,30 @@ footer {
   height: 30px;
   position: relative;
 }
-footer #myonoffswitch {
+#manymes footer #myonoffswitch {
   position: absolute;
   right: 20px;
 }
-footer .share {
+#manymes footer .share {
   display: inline-block;
   width: 25px;
   height: 25px;
   margin-top: 2px;
   opacity: 0.7;
 }
-footer .share.facebook {
+#manymes footer .share.facebook {
   background: url("../images/social/png/facebook.png") no-repeat;
   background-size: 100%;
 }
-footer .share.gplus {
+#manymes footer .share.gplus {
   background: url("../images/social/png/googleplus.png") no-repeat;
   background-size: 100%;
 }
-footer .share.twitter {
+#manymes footer .share.twitter {
   background: url("../images/social/png/twitter.png") no-repeat;
   background-size: 100%;
 }
-footer .share.github {
+#manymes footer .share.github {
   background: url("../images/social/png/github.png") no-repeat;
   background-size: 100%;
 }
