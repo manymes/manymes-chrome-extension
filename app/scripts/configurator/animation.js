@@ -20,8 +20,9 @@ var manymes = window.manymes || {};
 
     Animation.prototype.start = function($container){
         this.$renderContainer = $container;
+        var imgURL = chrome.extension.getURL('images/avatars/' + this.avatarId + '/sprites.png');
         this.$renderContainer.css({
-            'background-image': 'url(./images/avatars/' + this.avatarId + '/sprites.png)',
+            'background-image': 'url(' + imgURL + ')',
             'background-size': 'auto ' + 300 * this.spriteLength + 'px',
             'background-repeat': 'no-repeat'
         });
@@ -29,7 +30,7 @@ var manymes = window.manymes || {};
     };
 
     Animation.prototype.stop = function(){
-        clearTimeout(this.timer)
+        clearTimeout(this.timer);
     };
 
     Animation.prototype.addTimer = function(){
