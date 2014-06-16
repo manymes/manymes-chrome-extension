@@ -5,17 +5,37 @@ function appendManyMesOverlay(){
     $('body').append('<div class="manymes-container">manymes is watching this tab</div>');
 }
 
+function muteAudioVideo(){
+    $('audio, video, embed, object[type="application/x-shockwave-flash"]').remove();
+}
+
+function clearImgSrc(){
+    $(document).bind('DOMNodeInserted', function(e) {
+        var element = e.target;
+        if(element.nodeName === 'IMG'){
+            element.src = '';
+        }
+    });
+}
+
 chrome.runtime.sendMessage({method: 'getPluginTabId'}, function(){
+
+   
 
     if(document.hasFocus()){
         document.title = 'active';
     }else{
         document.title = 'inactive';
+        muteAudioVideo();
+        clearImgSrc();
     }
 
     $(document).ready(function(){
         appendManyMesOverlay();
-
+        /********   development  ***********/
+        muteAudioVideo();
+        //$('img').removeAttr('src');
+        /********   /development  ***********/
     });
 });
 

@@ -211,9 +211,8 @@ var manymes = window.manymes || {};
      */
     Logic.prototype.loop = function(){
         var that = this;
+        console.log('%c ##################### loop start #########################', 'color: #00FF00');
         setTimeout(function(){
-
-            console.log('%c ##################### loop start #########################', 'color: #00FF00');
 
             if(!that.areUrlsAvailable() && that.baseUrl !== null){
                 console.log('%c ##################### getAvailableUrls', 'color: #00FFFF');
@@ -236,7 +235,7 @@ var manymes = window.manymes || {};
             if(that.active){
                 that.loop();
             }
-        }, 10000);
+        }, 20000);
 
     };
 
