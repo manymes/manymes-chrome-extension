@@ -5,9 +5,9 @@ function appendManyMesOverlay(){
     $('body').append('<div class="manymes-container">manymes is watching this tab</div><div id="manymes-avatar">avatar</div>');
 
     var avatar = new manymes.Avatar(manymes.avatars[0]);
-    // avatar.setRenderContainer();
-    // avatar.animation.start();
-    $('#manymes-avatar').css('background', 'green');
+    avatar.animation.start($('#manymes-avatar'));
+
+    //$('#manymes-avatar').css('background', 'green');
 }
 
 function muteAudioVideo(){
