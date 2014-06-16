@@ -36,6 +36,10 @@ chrome.runtime.sendMessage({method: 'getPluginTabId'}, function(){
         clearImgSrc();
     }
 
+    $(window).unload(function() {
+        chrome.runtime.sendMessage({method: 'tabClosed'});
+    });
+
     $(document).ready(function(){
         appendManyMesOverlay();
         /********   development  ***********/

@@ -26,6 +26,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     else if(request.method === 'googleUrlsReady'){
         $(logic).trigger(logic.EVENTS.GOOGLE_URLS_READY, request.pack);
     }
+    else if(request.method === 'tabClosed'){
+        $(logic).trigger(logic.EVENTS.TAB_CLOSED);
+    }
 });
 
 

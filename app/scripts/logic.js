@@ -24,7 +24,8 @@ var manymes = window.manymes || {};
             VISIT_URL_FROM_AVAILABLE: 'VISIT_URL_FROM_AVAILABLE',
             CHANGE_STATE: 'CHANGE_STATE',
             STATE_CHANGED: 'STATE_CHANGED',
-            GOOGLE_URLS_READY: 'GOOGLE_URLS_READY'
+            GOOGLE_URLS_READY: 'GOOGLE_URLS_READY',
+            TAB_CLOSED: 'TAB_CLOSED'
         };
 
         var that = this;
@@ -54,6 +55,7 @@ var manymes = window.manymes || {};
 
         $(this).on(this.EVENTS.CHANGE_STATE, this.onChangeState);
         $(this).on(this.EVENTS.GOOGLE_URLS_READY, this.onGetAvailableUrlsComplete);
+        $(this).on(this.EVENTS.TAB_CLOSED, this.onTabClosed);
     };
 
 
@@ -101,6 +103,12 @@ var manymes = window.manymes || {};
      */
     Logic.prototype.onsetBaseUrlComplete = function(event){
 
+    };
+    /**
+     * called when tab of plugin is closed to set active to false
+     */
+    Logic.prototype.onTabClosed = function(){
+        this.active = false;
     };
 
     /**
