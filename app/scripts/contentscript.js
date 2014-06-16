@@ -1,3 +1,5 @@
+/*global manymes */
+
 'use strict';
 
 
@@ -45,7 +47,7 @@ chrome.runtime.sendMessage({method: 'getPluginTabId'}, function(){
 
 
 chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
+    function(request) {
         if(request.method === 'getAvailableUrlsFromTab'){
             
             $(document).ready(function(){
