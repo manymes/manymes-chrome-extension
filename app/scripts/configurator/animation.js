@@ -29,17 +29,18 @@ var manymes = window.manymes || {};
     };
 
     Animation.prototype.stop = function(){
-        this.timer = null;
+        clearTimeout(this.timer)
     };
 
     Animation.prototype.addTimer = function(){
         var that = this;
-        this.timer = function timer() {
+
+        function timer() {
             that.nextFrame();
-            setTimeout(timer, that.frames[that.currentFrame].duration);
+            that.timer = setTimeout(timer, that.frames[that.currentFrame].duration);
         };
 
-        this.timer();
+        timer();
     };
 
     Animation.prototype.nextFrame = function(){
@@ -48,7 +49,7 @@ var manymes = window.manymes || {};
         } else {
             this.currentFrame++;
         }
-        
+
         var newOffset = - 300 * this.frames[this.currentFrame].frame;
         this.$renderContainer.css('background-position-y', newOffset - 45);
     };
