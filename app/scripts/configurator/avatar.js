@@ -5,19 +5,15 @@ var manymes = window.manymes || {};
 
 (function (){
 
+    /**
+     * Avatar Constructor
+     * @param {object} data single avatar data from json
+     */
     var Avatar = function Avatar(data){
         this.id = data.id;
         this.name = data.name;
 
         this.animation = new manymes.Animation(data.animation, data.spriteLength, data.id);
-
-        this.EVENTS = {
-            SET_URL: 'SET_URL'
-        };
-    };
-
-    Avatar.prototype.setRenderContainer = function($container){
-        this.animation.setRenderContainer($container);
     };
 
     manymes.Avatar = Avatar;
