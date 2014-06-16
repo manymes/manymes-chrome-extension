@@ -95,13 +95,17 @@ var manymes = window.manymes || {};
 
 
     ConfiguratorModel.prototype.onPrevAvatar = function(event, slot, that){
+        this.allAvatars[this.activeAvatarIndices[slot]].animation.stop();
         this.activeAvatarIndices[slot] = that.getPrevAvatar(this.activeAvatarIndices[slot]);
-
+        this.allAvatars[this.activeAvatarIndices[slot]].animation.start($('#avatar-' + slot));
         $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
     };
 
     ConfiguratorModel.prototype.onNextAvatar = function(event, slot, that){
+        this.allAvatars[this.activeAvatarIndices[slot]].animation.stop();
         this.activeAvatarIndices[slot] = that.getNextAvatar(this.activeAvatarIndices[slot]);
+        this.allAvatars[this.activeAvatarIndices[slot]].animation.start($('#avatar-' + slot));
+
         $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
     };
 
