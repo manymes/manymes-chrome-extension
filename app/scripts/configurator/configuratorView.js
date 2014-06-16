@@ -33,7 +33,7 @@ var manymes = window.manymes || {};
 
 
     /**
-     * Creates the avatar containers with buttons
+     * Creates the social-container and the avatar-containers with buttons
      */
     ConfiguratorView.prototype.createDOMElements = function(){
         var str = '<div id="configurator"><div class="social"></div>';
