@@ -5,6 +5,10 @@ var manymes = window.manymes || {};
 
 (function (){
 
+    /**
+     * Handles the interaction of the user
+     * @param {jquery-instance} $container
+     */
     var ConfiguratorView = function ConfiguratorView($container){
 
         this.$container = $container;
@@ -15,16 +19,22 @@ var manymes = window.manymes || {};
         };
 
         this.createDOMElements();
+
         var that = this;
+
         this.$container.find('.prev-btn').on('click', function(){
             $(that).trigger(that.EVENTS.PREV_AVATAR, $(this).data('slot'));
         });
+
         this.$container.find('.next-btn').on('click', function(){
             $(that).trigger(that.EVENTS.NEXT_AVATAR, $(this).data('slot'));
         });
     };
 
 
+    /**
+     * Creates the social-container and the avatar-containers with buttons
+     */
     ConfiguratorView.prototype.createDOMElements = function(){
         var str = '<div id="configurator"><div class="social"></div>';
         for(var i = 0; i < 3; i++){
@@ -34,8 +44,6 @@ var manymes = window.manymes || {};
                     '</div>';
         }
         this.$container.append(str + '</div>');
-
-
     };
 
     manymes.ConfiguratorView = ConfiguratorView;
