@@ -1,6 +1,23 @@
 /*jshint unused:vars */
 'use strict';
 
+/*
+
+***************** IMPRESSUM *******************
+
+University: University of Applied Sciences Salzburg
+
+Major:      MultiMediaTechnology
+
+Intent:     MultiMediaProjekt 2b
+
+Authors:    David Neubauer (fhs35095),
+            Joscha Probst (fhs34786)
+
+Licence:    MIT License
+
+*/
+
 var tabId = null;
 var manymes = window.manymes || {};
 
