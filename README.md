@@ -11,7 +11,7 @@ http://manymes.github.io/
 how to install from source
 ========================
 
-* unzip manymes-chrome-extension.zip
+* download or clone the repository
 * open your terminal
 * cd into manymes-chrome-extension folder and run bower install
 * open chrome://extensions/
