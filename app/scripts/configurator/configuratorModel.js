@@ -21,7 +21,10 @@ Licence:    MIT License
 var manymes = window.manymes || {};
 
 (function (){
-
+    /**
+     * Configurator Model
+     * @param {ConfiguratorView} view ConfiguratorView
+     */
     var ConfiguratorModel = function ConfiguratorModel(view){
 
         this.allAvatars = [];
@@ -43,6 +46,9 @@ var manymes = window.manymes || {};
         this.init();
     };
 
+    /**
+     * initialize
+     */
     ConfiguratorModel.prototype.init = function(){
         for(var i = 0; i < manymes.avatars.length; i++){
             this.allAvatars.push(new manymes.Avatar(manymes.avatars[i]));
@@ -50,30 +56,32 @@ var manymes = window.manymes || {};
         this.initActiveAvatarIndices();
     };
 
+    /**
+     * initialize active avatars, load from chrome.storage or set default
+     */
     ConfiguratorModel.prototype.initActiveAvatarIndices = function(){
 
         var that = this;
         chrome.storage.local.get('activeAvatarIndices', function (result) {
             if($.isEmptyObject(result)){
-                console.log('empty');
                 chrome.storage.local.set({'activeAvatarIndices': JSON.stringify([0,1,2])}, function () {
-                    console.log('set');
                     that.activeAvatarIndices = [0,1,2];
                 });
             }else{
-                console.log('from local storage');
                 that.activeAvatarIndices = JSON.parse(result.activeAvatarIndices);
             }
-            
-
-            that.allAvatars[that.activeAvatarIndices[0]].animation.start($('#avatar-0'));
-            that.allAvatars[that.activeAvatarIndices[1]].animation.start($('#avatar-1'));
-            that.allAvatars[that.activeAvatarIndices[2]].animation.start($('#avatar-2'));
+            for(var i = 0; i < 3; i++){
+                that.allAvatars[that.activeAvatarIndices[i]].animation.start($('#avatar-' + i));
+            }
 
             $(that).trigger(that.EVENTS.AVATAR_CHANGED, that.getPermalink());
         });
     };
 
+    /**
+     * change active avatar index
+     * @param {int} slot number of slot to be rendered in
+     */
     ConfiguratorModel.prototype.setActiveAvatarIndex = function(slot){
         this.allAvatars[this.activeAvatarIndices[slot]].animation.stop();
         this.activeAvatarIndices[slot] = this.getPrevAvatar(this.activeAvatarIndices[slot]);
@@ -83,28 +91,24 @@ var manymes = window.manymes || {};
             console.log('set active avatar index');
         });
     };
-
-
-
-    ConfiguratorModel.prototype.writePermalinkToStorage = function(permalink){
-        
-    };
-
-    ConfiguratorModel.prototype.getPermalinkFromStorage = function(permalink){
-        
-    };
-
-
+    /**
+     * builds permalink from active avatars
+     * @return {string}
+     */
     ConfiguratorModel.prototype.getPermalink = function(){
         var permalink = '';
         for(var i = 0; i < this.activeAvatarIndices.length; i++){
             permalink += this.allAvatars[this.activeAvatarIndices[i]].name + '-';
         }
         permalink = permalink.slice(0, -1);
-        this.writePermalinkToStorage(permalink);
         return permalink;
     };
 
+    /**
+     * get next avatar from available avatars, skip already used avatars
+     * @param  {int} index
+     * @return {int}
+     */
     ConfiguratorModel.prototype.getNextAvatar = function(index){
         if(index >= this.allAvatars.length - 1){
             index = 0;
@@ -112,14 +116,17 @@ var manymes = window.manymes || {};
             index += 1;
         }
         if(this.activeAvatarIndices.indexOf(index) > -1){
-            console.log('found');
             return this.getNextAvatar(index);
         }else{
-            console.log('####', index);
             return index;
         }
     };
 
+    /**
+     * get previous avatar from available avatars, skip already used avatars
+     * @param  {int} index
+     * @return {int}
+     */
     ConfiguratorModel.prototype.getPrevAvatar = function(index){
         if(index <= 0){
             index = this.allAvatars.length - 1;
@@ -127,14 +134,11 @@ var manymes = window.manymes || {};
             index -= 1;
         }
         if(this.activeAvatarIndices.indexOf(index) > -1){
-            console.log('found');
             return this.getPrevAvatar(index);
         }else{
-            console.log('####', index);
             return index;
         }
     };
-
 
     ConfiguratorModel.prototype.onPrevAvatar = function(event, slot, that){
         this.setActiveAvatarIndex(slot);
@@ -144,8 +148,6 @@ var manymes = window.manymes || {};
         this.setActiveAvatarIndex(slot);
         
     };
-
-
 
     manymes.ConfiguratorModel = ConfiguratorModel;
 
