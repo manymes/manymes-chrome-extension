@@ -1,10 +1,10 @@
 {
   "appName": {
     "message": "manymes",
-    "description": "The name of the application"
+    "description": "http://manymes.github.io/"
   },
   "appDescription": {
-    "message": "mmp neubauer probst",
-    "description": "The description of the application"
+    "message": "http://manymes.github.io/",
+    "description": "http://manymes.github.io/"
   }
 }
