@@ -93,7 +93,6 @@ var manymes = window.manymes || {};
      * @return {Boolean}
      */
     Animation.prototype.isCurrentLastFrame = function(){
-        console.log(this.currentFrame === this.frames.length - 1);
         return this.currentFrame === this.frames.length - 1;
     };
 
